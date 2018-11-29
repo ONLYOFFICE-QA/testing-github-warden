@@ -16,6 +16,6 @@ class Api < Sinatra::Base
   end
 
   post '/' do
-    p @params.to_s
+    p @request
   end
 end
