@@ -30,6 +30,8 @@ class Api < Sinatra::Base
     puts 'commits'
     p @params['commits']
     result = find_action(@object)
+    puts '--------------'
+    p result
     result.to_json
   end
 end
