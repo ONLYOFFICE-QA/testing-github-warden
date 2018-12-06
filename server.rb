@@ -18,6 +18,7 @@ class Api < Sinatra::Base
   end
 
   post '/' do
+    p request
     puts 'repository:'
     p @params['repository']['name']
     puts '--------------'
