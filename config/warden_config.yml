@@ -1,0 +1,10 @@
+-
+  :repository_name_pattern: '//'
+  :branch_name_pattern: '//'
+  :commit_message_pattern: '//'
+  :action: 'nothing'
+-
+  :repository_name_pattern: 'test_repo'
+  :branch_name_pattern: 'test_branch'
+  :commit_message_pattern: 'test_commit_message'
+  :action: 'test_action'

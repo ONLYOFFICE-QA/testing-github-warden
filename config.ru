@@ -1,5 +1,5 @@
 require './management'
-require_relative 'server.rb'
+require_relative 'server'
 require 'logger'
 
 run Rack::URLMap.new('/' => Api)
