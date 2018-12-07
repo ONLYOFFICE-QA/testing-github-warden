@@ -31,6 +31,12 @@ module HookDirection
     case action
     when 'test_action'
       { action: 'test_action', commit: commit.message }
+    when 'close test bug'
+      OnlyofficeBugzillaHelper::BugzillaHelper
+        .new.update_bug(39_463,
+                        status: 'RESOLVED',
+                        resolution: 'FIXED')
+      { action: 'close test bug', commit: commit.message }
     else
       { action: 'nothing' }
     end
