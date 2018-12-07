@@ -8,3 +8,8 @@
   :branch_name_pattern: 'test_branch'
   :commit_message_pattern: 'test_commit_message'
   :action: 'test_action'
+-
+  :repository_name_pattern: 'test'
+  :branch_name_pattern: 'develop'
+  :commit_message_pattern: '[F|f]ix bug 39463'
+  :action: 'close test bug'
