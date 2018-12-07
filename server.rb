@@ -18,21 +18,18 @@ class Api < Sinatra::Base
   end
 
   post '/' do
-    p request
-    puts 'repository:'
-    p @params['repository']['name']
-    puts '--------------'
-    puts 'branch'
-    p @params['ref']
-    puts '--------------'
-    puts 'compare link:'
-    p @params['compare']
-    puts '--------------'
-    puts 'commits'
-    p @params['commits']
+    request.body.rewind
+    payload_body = request.body.read
+    verify_signature(payload_body)
     result = find_action(@object)
     puts '--------------'
     p result
     result.to_json
+  end
+
+  def verify_signature(payload_body)
+    halt 500, { errors: ['No HTTP_HTTP_X_HUB_SIGNATURE header'] }.to_json unless request.env['HTTP_HTTP_X_HUB_SIGNATURE']
+    signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), ENV['SECRET_TOKEN'], payload_body)
+    halt 500, { errors: ['Wrong signatures'] }.to_json unless Rack::Utils.secure_compare(signature, request.env['HTTP_HTTP_X_HUB_SIGNATURE'])
   end
 end
