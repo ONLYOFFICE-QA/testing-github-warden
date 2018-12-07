@@ -14,6 +14,8 @@ class Api < Sinatra::Base
   end
 
   get '/' do
+    @secret_token = !ENV['SECRET_TOKEN'].nil?
+    @secret_api_key = !ENV['BUGZILLA_API_KEY'].nil?
     erb :index
   end
 
