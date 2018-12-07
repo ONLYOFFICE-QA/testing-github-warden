@@ -2,7 +2,7 @@ language: ruby
 install:
 - bundle install
 before_script:
-- puma -C config/puma.rb -d
+- "bundle exec puma -C config/puma.rb -d"
 script:
 - bundle exec rspec spec/tests/
 env:
