@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/onlyoffice-testing-robot/onlyoffice_bugzilla_helper.git
+  revision: 698ab947b9f9d85710a4649cb36966ad37d3a8af
+  specs:
+    onlyoffice_bugzilla_helper (0.2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -37,6 +43,7 @@ PLATFORMS
 
 DEPENDENCIES
   faker
+  onlyoffice_bugzilla_helper!
   puma
   rspec
   sinatra
