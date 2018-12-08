@@ -37,6 +37,12 @@ module HookDirection
                         status: 'RESOLVED',
                         resolution: 'FIXED')
       { action: 'close test bug', commit: commit.message }
+    when 'add resolved/fixed to bug'
+      OnlyofficeBugzillaHelper::BugzillaHelper
+          .new.update_bug(commit.message.scan(/\d+/)[0],
+                          status: 'RESOLVED',
+                          resolution: 'FIXED')
+      { action: 'add resolved/fixed to bug', commit: commit.message }
     else
       { action: 'nothing' }
     end
