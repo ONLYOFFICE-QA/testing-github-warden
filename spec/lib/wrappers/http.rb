@@ -14,7 +14,7 @@ class Http
 
     unless no_headers
       signature = generate_signature(params)
-      headers['X-Hub-Signature'] ||= signature
+      headers['HTTP_X_HUB_SIGNATURE'] ||= signature
       headers.each_pair do |header_name, value|
         request[header_name] = value
       end

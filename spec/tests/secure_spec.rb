@@ -15,7 +15,7 @@ describe 'Secure smoke' do
 
     it 'Secure | wrong signature' do
       responce = http.post_request(params: StaticData.commit,
-                                   headers: { 'X-Hub-Signature': StaticData::WRONG_HTTP_X_HUB_SIGNATURE })
+                                   headers: { 'HTTP_X_HUB_SIGNATURE': StaticData::WRONG_HTTP_X_HUB_SIGNATURE })
       expect(responce.body['errors'].size).to eq(1)
       expect(responce.body['errors'][0]).to eq('Wrong signatures')
     end
