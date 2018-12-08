@@ -30,9 +30,9 @@ class Api < Sinatra::Base
   end
 
   def verify_signature(payload_body)
-    halt 500, { errors: ['No HTTP_HTTP_X_HUB_SIGNATURE header'] }.to_json unless request.env['HTTP_HTTP_X_HUB_SIGNATURE']
+    halt 500, { errors: ['No X-Hub-Signature header'] }.to_json unless request.env['X-Hub-Signature']
     halt 500, { errors: ['No SECRET_TOKEN'] }.to_json unless ENV['SECRET_TOKEN']
     signature = 'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), ENV['SECRET_TOKEN'], payload_body)
-    halt 500, { errors: ['Wrong signatures'] }.to_json unless Rack::Utils.secure_compare(signature, request.env['HTTP_HTTP_X_HUB_SIGNATURE'])
+    halt 500, { errors: ['Wrong signatures'] }.to_json unless Rack::Utils.secure_compare(signature, request.env['X-Hub-Signature'])
   end
 end
