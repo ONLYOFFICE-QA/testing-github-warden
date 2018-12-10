@@ -14,7 +14,12 @@
   :commit_message_pattern: '[F|f]ix bug 39463'
   :action: 'close test bug'
 -
+  :repository_name_pattern: 'test_close_and_comment'
+  :branch_name_pattern: 'develop'
+  :commit_message_pattern: '[F|f]ix bug 39463'
+  :action: 'close test bug and comment'
+-
   :repository_name_pattern: 'test'
   :branch_name_pattern: 'develop'
   :commit_message_pattern: '[F|f]ix bug.\d'
-  :action: 'add resolved/fixed to bug'
+  :action: 'add resolved/fixed to bug and comment'

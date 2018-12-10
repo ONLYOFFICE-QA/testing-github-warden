@@ -9,7 +9,7 @@ module HookDirection
       next unless branch_status
 
       object.commits.each do |commit|
-        result << run_action(commit, current_pattern[:action]) if commits_check(commit.message, current_pattern)
+        result << run_action(commit, current_pattern[:action], object.branch) if commits_check(commit.message, current_pattern)
       end
     end
     result
@@ -27,22 +27,36 @@ module HookDirection
     Regexp.new(patterns[:commit_message_pattern]).match?(name)
   end
 
-  def run_action(commit, action)
+  def run_action(commit, action, branch)
+    bugzilla = OnlyofficeBugzillaHelper::BugzillaHelper.new
     case action
     when 'test_action'
       { action: 'test_action', commit: commit.message }
     when 'close test bug'
-      OnlyofficeBugzillaHelper::BugzillaHelper
-        .new.update_bug(39_463,
-                        status: 'RESOLVED',
-                        resolution: 'FIXED')
-      { action: 'close test bug', commit: commit.message }
-    when 'add resolved/fixed to bug'
-      OnlyofficeBugzillaHelper::BugzillaHelper
-          .new.update_bug(commit.message.scan(/\d+/)[0],
+      bugzilla.update_bug(39_463,
                           status: 'RESOLVED',
                           resolution: 'FIXED')
-      { action: 'add resolved/fixed to bug', commit: commit.message }
+      { action: 'close test bug', commit: commit.message }
+    when 'close test bug and comment'
+      bugzilla.update_bug(39_463,
+                          status: 'RESOLVED',
+                          resolution: 'FIXED')
+      branch = "Commit pushed to #{branch}"
+      message = "Message: #{commit.message}"
+      author = "Author: #{commit.author.name}"
+      full_comment = "#{branch}\n#{commit.url}\n#{message}\n#{author}"
+      bugzilla.add_comment(39_463, full_comment)
+      { action: 'close test bug and comment', commit: commit.message, comment: full_comment }
+    when 'add resolved/fixed to bug and comment'
+      bugzilla.update_bug(commit.message.scan(/\d+/)[0],
+                          status: 'RESOLVED',
+                          resolution: 'FIXED')
+      branch = "Commit pushed to #{branch}"
+      message = "Message: #{commit.message}"
+      author = "Author: #{commit.author.name}"
+      full_comment = "#{branch}\n#{commit.url}\n#{message}\n#{author}"
+      bugzilla.add_comment(commit.message.scan(/\d+/)[0], full_comment)
+      { action: 'add resolved/fixed to bug and comment', commit: commit.message, comment: full_comment }
     else
       { action: 'nothing' }
     end
