@@ -1,3 +1,4 @@
+require_relative 'author'
 class Commit
   attr_accessor :id, :message, :url, :author
   def initialize(params)
@@ -5,5 +6,6 @@ class Commit
     @message = params['message']
     @timestamp = params['timestamp']
     @url = params['url']
+    @author = Author.new(params)
   end
 end
