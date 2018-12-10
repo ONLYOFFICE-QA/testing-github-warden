@@ -84,7 +84,7 @@ module HookDirection
   def only_comment_if_not_new_or_reopen(commit, full_comment)
     bug_id = commit.message.scan(/\d+/)[0]
     bug_status = @bugzilla.bug_data(bug_id)['status']
-    resolved_fixed_bug(bug_id) if bug_status != 'NEW' || bug_status != 'REOPEN'
+    resolved_fixed_bug(bug_id) if %w[NEW REOPEN].include?(bug_status)
     @bugzilla.add_comment(bug_id, full_comment)
     { action: 'only comment if not new or reopen', commit: commit.message, comment: full_comment }
   end
