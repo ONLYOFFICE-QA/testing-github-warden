@@ -12,14 +12,19 @@
   :repository_name_pattern: 'test'
   :branch_name_pattern: 'develop'
   :commit_message_pattern: '[F|f]ix bug 39463'
-  :action: 'close test bug'
+  :action: 'close_test_bug'
 -
   :repository_name_pattern: 'test_close_and_comment'
   :branch_name_pattern: 'develop'
   :commit_message_pattern: '[F|f]ix bug 39463'
-  :action: 'close test bug and comment'
+  :action: 'close_test_bug_and_comment'
+-
+  :repository_name_pattern: 'only_comment_if_not_new_or_reopen'
+  :branch_name_pattern: 'develop'
+  :commit_message_pattern: '[F|f]ix bug 39463'
+  :action: 'only_comment_if_not_new_or_reopen'
 -
   :repository_name_pattern: 'test'
   :branch_name_pattern: 'develop'
   :commit_message_pattern: '[F|f]ix bug.\d'
-  :action: 'add resolved/fixed to bug and comment'
+  :action: 'add_resolved_fixed_to_bug_and_comment'
