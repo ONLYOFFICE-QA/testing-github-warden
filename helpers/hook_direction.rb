@@ -47,9 +47,17 @@ module HookDirection
   end
 
   def resolved_fixed_bug(bug_id)
-    OnlyofficeBugzillaHelper::BugzillaHelper.new.update_bug(bug_id,
-                                                            status: 'RESOLVED',
-                                                            resolution: 'FIXED')
+    Thread.new do
+      OnlyofficeBugzillaHelper::BugzillaHelper.new.update_bug(bug_id,
+                                                              status: 'RESOLVED',
+                                                              resolution: 'FIXED')
+    end
+  end
+
+  def add_comment(id, comment)
+    Thread.new do
+      @bugzilla.add_comment(id, comment)
+    end
   end
 
   def create_full_comment(commit, branch)
@@ -70,22 +78,22 @@ module HookDirection
 
   def close_test_bug_and_comment(commit, full_comment)
     resolved_fixed_bug(39_463)
-    @bugzilla.add_comment(39_463, full_comment)
+    add_comment(39_463, full_comment)
     { action: 'close test bug and comment', commit: commit.message, comment: full_comment }
   end
 
   def add_resolved_fixed_to_bug_and_comment(commit, full_comment)
     bug_id = commit.message.scan(/\d+/)[0]
     resolved_fixed_bug(bug_id)
-    @bugzilla.add_comment(bug_id, full_comment)
-    { action: 'add_resolved_fixed_to_bug_and_comment', commit: commit.message, comment: full_comment }
+    add_comment(bug_id, full_comment)
+    {action: 'add_resolved_fixed_to_bug_and_comment', commit: commit.message, comment: full_comment}
   end
 
   def only_comment_if_not_new_or_reopen(commit, full_comment)
     bug_id = commit.message.scan(/\d+/)[0]
     bug_status = @bugzilla.bug_data(bug_id)['status']
     resolved_fixed_bug(bug_id) if %w[NEW REOPEN].include?(bug_status)
-    @bugzilla.add_comment(bug_id, full_comment)
-    { action: 'only comment if not new or reopen', commit: commit.message, comment: full_comment }
+    add_comment(bug_id, full_comment)
+    {action: 'only comment if not new or reopen', commit: commit.message, comment: full_comment}
   end
 end

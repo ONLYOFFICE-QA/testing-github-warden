@@ -16,11 +16,11 @@ class Api < Sinatra::Base
   get '/' do
     @secret_token = !ENV['SECRET_TOKEN'].nil?
     @secret_api_key = !ENV['BUGZILLA_API_KEY'].nil?
+    @threads_count = Thread.list.select { |thread| thread.status == 'run' }.count
     erb :index
   end
 
   post '/' do
-    halt 200, { status: ['Ping!!'] }.to_json if request.env['X-GitHub-Event'] == 'ping'
     request.body.rewind
     payload_body = request.body.read
     verify_signature(payload_body)
