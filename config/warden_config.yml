@@ -24,7 +24,7 @@
   :commit_message_pattern: '[F|f]ix bug 39463'
   :action: 'only_comment_if_not_new_or_reopen'
 -
-  :repository_name_pattern: 'test'
-  :branch_name_pattern: 'develop'
-  :commit_message_pattern: '[F|f]ix bug.\d'
+  :repository_name_pattern: 'sdkjs'
+  :branch_name_pattern: 'test/warden'
+  :commit_message_pattern: '[F|f]ix.bug .\d'
   :action: 'add_resolved_fixed_to_bug_and_comment'
