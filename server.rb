@@ -20,6 +20,7 @@ class Api < Sinatra::Base
   end
 
   post '/' do
+    halt 200, { status: ['Ping!!'] }.to_json if request.env['X-GitHub-Event'] == 'ping'
     request.body.rewind
     payload_body = request.body.read
     verify_signature(payload_body)
