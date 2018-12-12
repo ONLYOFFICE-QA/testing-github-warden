@@ -10,9 +10,9 @@ describe 'Commit smoke' do
   describe 'status change' do
     StaticData::CHANGE_STATUS_AND_COMMENT.each do |commit_message|
       it "check '#{commit_message}' message for add status and comment" do
+        sleep 5
         bugzilla.update_bug(StaticData::BUG_ID_TEST, status: 'NEW')
         commit_req = StaticData.commit
-        commit_req['repository']['name'] = 'sdkjs'
         commit_req['commits'][0]['message'] = commit_message
         commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
         commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
@@ -27,8 +27,8 @@ describe 'Commit smoke' do
     StaticData::COMMENT_ONLY.each do |commit_message|
       it "check '#{commit_message}' message for add status and comment" do
         bugzilla.update_bug(StaticData::BUG_ID_TEST, status: 'NEW')
+        sleep 5
         commit_req = StaticData.commit
-        commit_req['repository']['name'] = 'sdkjs'
         commit_req['commits'][0]['message'] = commit_message
         commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
         commit_req['commits'][0]['author']['name'] = Faker::StarWars.character

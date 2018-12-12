@@ -8,6 +8,10 @@ class StaticData
   WRONG_HTTP_X_HUB_SIGNATURE = 'sha1=wrong_key'.freeze
   BUG_ID_TEST = '39463'.freeze
 
-  CHANGE_STATUS_AND_COMMENT = ["[se] Fix bug #{BUG_ID_TEST}", "[charts] Fix bug #{BUG_ID_TEST}", "Fix bug ##{BUG_ID_TEST}"].freeze
-  COMMENT_ONLY = ["[se] Bug #{BUG_ID_TEST}", "[se] R1C1 for bug #{BUG_ID_TEST}", "[se] For bug #{BUG_ID_TEST} (sort first row)"].freeze
+  CHANGE_STATUS_AND_COMMENT = ["[se] Fix bug #{BUG_ID_TEST}",
+                               "[charts] Fix bug #{BUG_ID_TEST}",
+                               "Fix bug ##{BUG_ID_TEST}"].freeze
+  COMMENT_ONLY = ["[se] Bug #{BUG_ID_TEST}",
+                  "[se] R1C1 for bug #{BUG_ID_TEST}",
+                  "[se] For bug #{BUG_ID_TEST} (sort first row)"].freeze
 end

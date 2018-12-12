@@ -3,18 +3,11 @@ module HookDirection
     result = []
     @bugzilla = OnlyofficeBugzillaHelper::BugzillaHelper.new
     YAML.load_file('config/warden_config.yml').each do |current_pattern|
-      repo_status = repository_check(object.repository.name, current_pattern)
-      next unless repo_status
-
       object.commits.each do |commit|
         result << run_action(commit, current_pattern[:action], object.branch) if commits_check(commit.message, current_pattern)
       end
     end
     result
-  end
-
-  def repository_check(name, pattern)
-    Regexp.new(pattern[:repository_name_pattern]).match?(name)
   end
 
   def commits_check(name, patterns)

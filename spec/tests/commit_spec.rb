@@ -34,7 +34,6 @@ describe 'Commit smoke' do
       bugzilla = OnlyofficeBugzillaHelper::BugzillaHelper.new
       bugzilla.update_bug(StaticData::BUG_ID_TEST, status: 'NEW')
       commit_req = StaticData.commit
-      commit_req['repository']['name'] = 'sdkjs'
       commit_req['ref'] = 'refs/heads/develop'
       commit_req['commits'][0]['message'] = 'Fix bug 39463'
       commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
@@ -56,7 +55,6 @@ describe 'Commit smoke' do
       bugzilla = OnlyofficeBugzillaHelper::BugzillaHelper.new
       bugzilla.update_bug(StaticData::BUG_ID_TEST, status: 'NEW')
       commit_req = StaticData.commit
-      commit_req['repository']['name'] = 'sdkjs'
       commit_req['ref'] = 'refs/heads/develop'
       commit_req['commits'][0]['message'] = 'bug 39463'
       commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
