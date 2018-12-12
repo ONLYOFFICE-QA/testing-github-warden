@@ -24,7 +24,7 @@ class Api < Sinatra::Base
     request.body.rewind
     payload_body = request.body.read
     verify_signature(payload_body)
-    result = find_action(@object)
+    result = find_action(@object) if @object.commits
     puts '--------------'
     p result
     result.to_json

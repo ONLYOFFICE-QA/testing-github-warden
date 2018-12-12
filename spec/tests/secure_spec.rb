@@ -7,6 +7,12 @@ describe 'Secure smoke' do
   end
 
   describe 'Secure' do
+
+    it 'Secure | ping' do
+      responce = http.post_request(params: StaticData.ping)
+      expect(responce.body).to be_nil
+    end
+
     it 'Secure | no headers' do
       responce = http.post_request(params: StaticData.commit, no_headers: true)
       expect(responce.body['errors'].size).to eq(1)
