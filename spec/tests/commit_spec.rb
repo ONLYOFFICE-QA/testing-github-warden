@@ -39,6 +39,7 @@ describe 'Commit smoke' do
       commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
       commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
       responce = http.post_request(params: commit_req)
+      sleep 10
       result_bug = bugzilla.bug_data(StaticData::BUG_ID_TEST)
       result_comments = bugzilla.comments(StaticData::BUG_ID_TEST)
       branch = "Commit pushed to #{commit_req['ref']}"
@@ -60,6 +61,7 @@ describe 'Commit smoke' do
       commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
       commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
       responce = http.post_request(params: commit_req)
+      sleep 10
       result_bug = bugzilla.bug_data(StaticData::BUG_ID_TEST)
       result_comments = bugzilla.comments(StaticData::BUG_ID_TEST)
       branch = "Commit pushed to #{commit_req['ref']}"
@@ -84,7 +86,7 @@ describe 'Commit smoke' do
       commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
       commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
       responce = http.post_request(params: commit_req)
-
+      sleep 10
       result_bug = bugzilla.bug_data(StaticData::BUG_ID_TEST)
       result_comments = bugzilla.comments(StaticData::BUG_ID_TEST)
 
@@ -101,7 +103,7 @@ describe 'Commit smoke' do
     it 'change status if reopened' do
       bugzilla = OnlyofficeBugzillaHelper::BugzillaHelper.new
       bugzilla.update_bug(StaticData::BUG_ID_TEST, status: 'RESOLVED',
-                          resolution: 'FIXED')
+                                                   resolution: 'FIXED')
       bugzilla.update_bug(StaticData::BUG_ID_TEST, status: 'REOPENED')
       commit_req = StaticData.commit
       commit_req['repository']['name'] = 'sdkjs'
@@ -109,7 +111,7 @@ describe 'Commit smoke' do
       commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
       commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
       responce = http.post_request(params: commit_req)
-
+      sleep 10
       result_bug = bugzilla.bug_data(StaticData::BUG_ID_TEST)
       result_comments = bugzilla.comments(StaticData::BUG_ID_TEST)
 
