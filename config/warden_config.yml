@@ -1,30 +1,17 @@
 -
   :repository_name_pattern: '//'
-  :branch_name_pattern: '//'
   :commit_message_pattern: '//'
   :action: 'nothing'
 -
   :repository_name_pattern: 'test_repo'
-  :branch_name_pattern: 'test_branch'
   :commit_message_pattern: 'test_commit_message'
   :action: 'test_action'
 -
-  :repository_name_pattern: 'test'
-  :branch_name_pattern: 'develop'
-  :commit_message_pattern: '[F|f]ix bug 39463'
-  :action: 'close_test_bug'
--
-  :repository_name_pattern: 'test_close_and_comment'
-  :branch_name_pattern: 'develop'
-  :commit_message_pattern: '[F|f]ix bug 39463'
-  :action: 'close_test_bug_and_comment'
--
-  :repository_name_pattern: 'only_comment_if_not_new_or_reopen'
-  :branch_name_pattern: 'develop'
-  :commit_message_pattern: '[F|f]ix bug 39463'
-  :action: 'only_comment_if_not_new_or_reopen'
+  :repository_name_pattern: 'sdkjs'
+  :commit_message_pattern: '[F|f]ix [B|b]ug #?(\d*)'
+  :action: 'add_resolved_fixed_and_comment'
 -
   :repository_name_pattern: 'sdkjs'
-  :branch_name_pattern: 'test/warden'
-  :commit_message_pattern: '[F|f]ix.bug .\d'
-  :action: 'add_resolved_fixed_to_bug_and_comment'
+  :commit_message_pattern: '[B|b]ug #?(\d*)'
+  :commit_message_antipattern: '[F|f]ix'
+  :action: 'add_comment'
