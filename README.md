@@ -4,7 +4,7 @@ Change dockerfile: need to add `SECRET_TOKEN` and `BUGZILLA_API_KEY`
 
 ```
 docker build . -t testing-github-warden
-docker run -itd -p 80:3000 testing-github-warden
+docker run -itd -p 3000:3000 --restart always testing-github-warden
 ```
 
 * `SECRET_TOKEN` - is a token from webhook settings (https://developer.github.com/webhooks/securing/)

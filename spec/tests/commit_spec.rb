@@ -124,5 +124,28 @@ describe 'Commit smoke' do
       expect(result_bug['status']).to eq('RESOLVED')
       expect(result_bug['resolution']).to eq('FIXED')
     end
+
+    it 'change status if assigned' do
+      bugzilla = OnlyofficeBugzillaHelper::BugzillaHelper.new
+      bugzilla.update_bug(StaticData::BUG_ID_TEST, status: 'ASSIGNED')
+      commit_req = StaticData.commit
+      commit_req['repository']['name'] = 'sdkjs'
+      commit_req['commits'][0]['message'] = 'Fix bug 39463'
+      commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
+      commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
+      responce = http.post_request(params: commit_req)
+      sleep 10
+      result_bug = bugzilla.bug_data(StaticData::BUG_ID_TEST)
+      result_comments = bugzilla.comments(StaticData::BUG_ID_TEST)
+
+      branch = "Commit pushed to #{commit_req['ref']}"
+      commit = commit_req['commits'][0]['url']
+      message = "Message: #{commit_req['commits'][0]['message']}"
+      author = "Author: #{commit_req['commits'][0]['author']['name']}"
+      expect(result_comments.last['text']).to eq("#{branch}\n#{commit}\n#{message}\n#{author}")
+      expect(responce.body[0]['commit']).to eq('Fix bug 39463')
+      expect(result_bug['status']).to eq('RESOLVED')
+      expect(result_bug['resolution']).to eq('FIXED')
+    end
   end
 end
