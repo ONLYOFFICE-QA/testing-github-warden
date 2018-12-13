@@ -1,5 +1,6 @@
 require_relative 'management'
-class Api < Sinatra::Base
+class App < Sinatra::Base
+  helpers Sinatra::CustomLogger
   include HookDirection
   attr_accessor :params
 

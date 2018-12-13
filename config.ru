@@ -1,8 +1,7 @@
-require './management'
+require_relative './management'
 require_relative 'server'
-require 'logger'
 
-run Rack::URLMap.new('/' => Api)
+run Rack::URLMap.new('/' => App)
 
 configure do
   set :logger, Logger.new(STDOUT)
