@@ -35,16 +35,20 @@ module HookDirection
 
   def resolved_fixed_bug(bug_id)
     Thread.new do
+      logger.info ">> Start to add RESOLVED/FIXED to bug #{bug_id}"
       OnlyofficeBugzillaHelper::BugzillaHelper.new.update_bug(bug_id,
                                                               status: 'RESOLVED',
                                                               resolution: 'FIXED')
+      logger.info "<< End to add RESOLVED/FIXED to bug #{bug_id}"
     end
   end
 
   def add_comment(commit, full_comment)
     bug_id = commit.message.scan(/\d+/)[0]
     Thread.new do
+      logger.info ">> Start to add comment to bug #{bug_id}"
       @bugzilla.add_comment(bug_id, full_comment)
+      logger.info "<< End to add comment to bug #{bug_id}"
     end
     { action: 'add_comment', commit: commit.message, comment: full_comment }
   end

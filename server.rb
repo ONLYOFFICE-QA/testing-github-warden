@@ -33,8 +33,7 @@ class App < Sinatra::Base
     payload_body = request.body.read
     verify_signature(payload_body)
     result = find_action(@object) if @object.commits
-    puts '--------------'
-    p result
+    logger.info "-> New result: #{result}"
     result.to_json
   end
 
