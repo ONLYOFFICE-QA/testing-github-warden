@@ -14,6 +14,13 @@ class App < Sinatra::Base
     @params = JSON.parse(body) unless body == ''
   end
 
+
+  configure do
+    logger = Logger.new(STDOUT)
+    logger.level = Logger::DEBUG if development?
+    set :logger, logger
+  end
+
   get '/' do
     @secret_token = !ENV['SECRET_TOKEN'].nil?
     @secret_api_key = !ENV['BUGZILLA_API_KEY'].nil?
