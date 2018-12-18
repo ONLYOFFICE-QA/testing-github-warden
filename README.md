@@ -2,9 +2,21 @@
 ### How to run
 Change dockerfile: need to add `SECRET_TOKEN` and `BUGZILLA_API_KEY`
 
+
+You cat build and run application from Docker
 ```
 docker build . -t testing-github-warden
-docker run -itd -p 3000:3000 --restart always testing-github-warden
+docker run -itd -p 3000:3000 --restart always --name github-warden testing-github-warden
+```
+
+Or from docker-compose
+```
+docker-compose up -d
+```
+
+There are easy way to update warden if you use docker-compose
+```
+docker-compose up --build -d
 ```
 
 * `SECRET_TOKEN` - is a token from webhook settings (https://developer.github.com/webhooks/securing/)
