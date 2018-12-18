@@ -14,4 +14,6 @@ class StaticData
   COMMENT_ONLY = ["[se] Bug #{BUG_ID_TEST}",
                   "[se] R1C1 for bug #{BUG_ID_TEST}",
                   "[se] For bug #{BUG_ID_TEST} (sort first row)"].freeze
+
+  DO_NOTHING = ['Fix bug with recalculating', 'bug with recalculating', 'Fix with recalculating'].freeze
 end

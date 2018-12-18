@@ -39,4 +39,21 @@ describe 'Commit smoke' do
     end
   end
 
+  describe 'do nothing' do
+    StaticData::DO_NOTHING.each do |commit_message|
+      it "check '#{commit_message}' message for do nothing" do
+        bugzilla.update_bug(StaticData::BUG_ID_TEST, status: 'NEW')
+        sleep 5
+        commit_req = StaticData.commit
+        commit_req['commits'][0]['message'] = commit_message
+        commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
+        commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
+        responce = http.post_request(params: commit_req)
+        expect(responce.body).to be_empty
+        expect(responce.code).to eq('200')
+      end
+    end
+  end
+
+
 end
