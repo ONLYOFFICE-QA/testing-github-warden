@@ -5,7 +5,7 @@
   :commit_message_pattern: 'test_commit_message'
   :action: 'test_action'
 -
-  :commit_message_pattern: '[F|f]ix [B|b]ug #?\d+'
+  :commit_message_pattern: '[F|f]ix(ed)? [B|b]ug #?\d+'
   :action: 'add_resolved_fixed_and_comment'
 -
   :commit_message_pattern: '[B|b]ug #?\d+'
