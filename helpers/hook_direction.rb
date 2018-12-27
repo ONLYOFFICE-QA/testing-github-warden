@@ -45,14 +45,14 @@ module HookDirection
   end
 
   def add_comment(commit, full_comment)
-    bug_id = commit.message.scan(/\d+/)[0]
+    bug_id = commit.message[/[B|b]ug.#?(\d+)/][/\d+/]
     Thread.new do
       logger.info ">> Start to add comment to bug #{bug_id}"
       result = @bugzilla.add_comment(bug_id, full_comment)
       logger.info "Bugzilla responce #{result.body}"
       logger.info "<< End to add comment to bug #{bug_id}"
     end
-    { action: 'add_comment', commit: commit.message, comment: full_comment }
+    { action: 'add_comment', commit: commit.message, comment: full_comment, bug_id: bug_id }
   end
 
   def create_full_comment(commit, branch)
@@ -67,11 +67,12 @@ module HookDirection
   end
 
   def add_resolved_fixed_and_comment(commit, full_comment)
-    bug_id = commit.message.scan(/\d+/)[0]
+    bug_id = commit.message[/[B|b]ug.#?(\d+)/][/\d+/]
     change_status = bug_new_or_reopen(bug_id)
     resolved_fixed_bug(bug_id) if change_status
     add_comment(commit, full_comment)
-    { action: 'add_resolved_fixed_and_comment', commit: commit.message, comment: full_comment, status_change: change_status }
+    { action: 'add_resolved_fixed_and_comment',
+      commit: commit.message, comment: full_comment, status_change: change_status, bug_id: bug_id }
   end
 
   def bug_new_or_reopen(bug_id)

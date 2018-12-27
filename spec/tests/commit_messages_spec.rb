@@ -18,6 +18,7 @@ describe 'Commit smoke' do
         commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
         responce = http.post_request(params: commit_req)
         expect(responce.body[0]['commit']).to eq(commit_message)
+        expect(responce.body[0]['bug_id']).to eq(StaticData::BUG_ID_TEST)
         expect(responce.body[0]['status_change']).to be_truthy
       end
     end
@@ -34,6 +35,7 @@ describe 'Commit smoke' do
         commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
         responce = http.post_request(params: commit_req)
         expect(responce.body[0]['commit']).to eq(commit_message)
+        expect(responce.body[0]['bug_id']).to eq(StaticData::BUG_ID_TEST)
         expect(responce.body[0]['status_change']).to be_falsey
       end
     end
