@@ -1,35 +1,36 @@
 module HookDirection
   def find_action(object)
-    result = []
+    result = {}
     @bugzilla = OnlyofficeBugzillaHelper::BugzillaHelper.new
     YAML.load_file('config/warden_config.yml').each do |current_pattern|
       object.commits.each do |commit|
-        result << run_action(commit, current_pattern[:action], object.branch) if commits_check(commit.message, current_pattern)
+        next unless commit.message =~ /#{current_pattern[:commit_message_pattern]}/
+
+        bug_id = get_bug_id(commit)
+        result[commit.id] = { commit_message: commit.message, bug_id: bug_id } unless result[commit.id]
+        result[commit.id][current_pattern[:action]] = run_action(commit, current_pattern[:action], object.branch, bug_id)
       end
     end
     result
   end
 
   def commits_check(name, patterns)
-    pattern_match = Regexp.new(patterns[:commit_message_pattern]).match?(name)
-    antipattern_match = false
-    if patterns[:commit_message_antipattern]
-      antipattern_match = Regexp.new(patterns[:commit_message_antipattern]).match?(name)
-    end
-    pattern_match && !antipattern_match
+    name =~ /#{patterns[:commit_message_pattern]}/
   end
 
-  def run_action(commit, action, branch)
+  def get_bug_id(commit)
+    commit.message[/[B|b]ug.#?(\d+)/].to_s[/\d+/]
+  end
+
+  def run_action(commit, action, branch, bug_id)
     full_comment = create_full_comment(commit, branch)
     case action
     when 'test_action'
-      test_action(commit)
+      { test_action_execut: true }
     when 'add_comment'
-      add_comment(commit, full_comment)
-    when 'add_resolved_fixed_and_comment'
-      add_resolved_fixed_and_comment(commit, full_comment)
-    else
-      { action: 'nothing' }
+      add_comment(bug_id, full_comment)
+    when 'add_resolved_fixed'
+      add_resolved_fixed(bug_id)
     end
   end
 
@@ -44,15 +45,14 @@ module HookDirection
     end
   end
 
-  def add_comment(commit, full_comment)
-    bug_id = commit.message[/[B|b]ug.#?(\d+)/][/\d+/]
+  def add_comment(bug_id, full_comment)
     Thread.new do
       logger.info ">> Start to add comment to bug #{bug_id}"
       result = @bugzilla.add_comment(bug_id, full_comment)
       logger.info "Bugzilla responce #{result.body}"
       logger.info "<< End to add comment to bug #{bug_id}"
     end
-    { action: 'add_comment', commit: commit.message, comment: full_comment, bug_id: bug_id }
+    { comment: full_comment}
   end
 
   def create_full_comment(commit, branch)
@@ -62,17 +62,10 @@ module HookDirection
     "#{branch}\n#{commit.url}\n#{message}\n#{author}"
   end
 
-  def test_action(commit)
-    { action: 'test_action', commit: commit.message }
-  end
-
-  def add_resolved_fixed_and_comment(commit, full_comment)
-    bug_id = commit.message[/[B|b]ug.#?(\d+)/][/\d+/]
+  def add_resolved_fixed(bug_id)
     change_status = bug_new_or_reopen(bug_id)
     resolved_fixed_bug(bug_id) if change_status
-    add_comment(commit, full_comment)
-    { action: 'add_resolved_fixed_and_comment',
-      commit: commit.message, comment: full_comment, status_change: change_status, bug_id: bug_id }
+    { status_change: change_status }
   end
 
   def bug_new_or_reopen(bug_id)
