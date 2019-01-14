@@ -17,9 +17,11 @@ describe 'Commit smoke' do
         commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
         commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
         responce = http.post_request(params: commit_req)
-        expect(responce.body[0]['commit']).to eq(commit_message)
-        expect(responce.body[0]['bug_id']).to eq(StaticData::BUG_ID_TEST)
-        expect(responce.body[0]['status_change']).to be_truthy
+        responce_commit = responce.body[commit_req['commits'][0]['id']]
+        expect(responce_commit['commit_message']).to eq(commit_message)
+        expect(responce_commit['bug_id']).to eq(StaticData::BUG_ID_TEST)
+        expect(responce_commit['add_resolved_fixed']['status_change']).to be_truthy
+        expect(responce_commit['add_comment']['comment']).to be_truthy
       end
     end
   end
@@ -34,9 +36,10 @@ describe 'Commit smoke' do
         commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
         commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
         responce = http.post_request(params: commit_req)
-        expect(responce.body[0]['commit']).to eq(commit_message)
-        expect(responce.body[0]['bug_id']).to eq(StaticData::BUG_ID_TEST)
-        expect(responce.body[0]['status_change']).to be_falsey
+        responce_commit = responce.body[commit_req['commits'][0]['id']]
+        expect(responce_commit['commit_message']).to eq(commit_message)
+        expect(responce_commit['bug_id']).to eq(StaticData::BUG_ID_TEST)
+        expect(responce_commit['add_resolved_fixed']).to be_nil
       end
     end
   end

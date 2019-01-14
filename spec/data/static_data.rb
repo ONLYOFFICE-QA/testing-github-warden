@@ -18,7 +18,9 @@ class StaticData
                   "[se] R1C1 for bug #{BUG_ID_TEST}",
                   "[se] For bug #{BUG_ID_TEST} (sort first row)",
                   "[x2t] For bug #{BUG_ID_TEST}",
-                  "[x2t] For Bug #{BUG_ID_TEST}"].freeze
+                  "[x2t] For Bug #{BUG_ID_TEST}",
+                  "[se] For bug #{BUG_ID_TEST}
+                    Fix calculate gradient without distance"].freeze
 
   DO_NOTHING = ['Fix bug with recalculating', 'bug with recalculating', 'Fix with recalculating'].freeze
 end
