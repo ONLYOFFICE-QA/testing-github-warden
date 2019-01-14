@@ -27,6 +27,18 @@ After any push to repo, that we activate webhooks, github will sent post request
 This request contains commit message and other data.
 Server take all of them, and if message of commit is matched with pattern, action will be executed
 
+
+At now, there are two actions: add comment and change status to RESOLVED.
+* If commit message contain word "Bug" (or "bug"), and after it will be placed number (like "123456", or "#123456"), this bug will be commented.
+* If commit message contain word "Fix" (or "Fixed") + "Bug" (or "bug") +  number (like "123456", or "#123456"), bug with id "123456" will be commented, and status will be changed.
+* Only "NEW", "REOPENED" or "ASSIGNED" statuses can be changed
+
+Examples for changing status and commented:
+"Fix bug 123456", "fixed bug #123456 and other message"
+
+Examples for only comments:
+"For Bug #123456", "This text have no matter bug 123456"
+
 ### Adding new event
 #### New pattern
 At first, need to add new pattern to `config/warden_config.yml`
