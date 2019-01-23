@@ -70,7 +70,7 @@ module HookDirection
 
   def bug_new_or_reopen(bug_id)
     bug_status = @bugzilla.bug_data(bug_id)['status']
-    logger.info "Bugzilla responce: bug #{bug_status} status #{bug_status}"
+    logger.info "Bugzilla responce for bug : bug #{bug_id} status #{bug_status}"
     %w[NEW REOPENED ASSIGNED].include?(bug_status)
   end
 end
