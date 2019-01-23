@@ -1,5 +1,6 @@
 require 'rspec'
 require 'net/http'
+require 'openssl'
 require 'json'
 require 'faker'
 require 'onlyoffice_bugzilla_helper'
