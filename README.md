@@ -34,10 +34,10 @@ At now, there are two actions: add comment and change status to RESOLVED.
 * Only "NEW", "REOPENED" or "ASSIGNED" statuses can be changed
 
 Examples for changing status and commented:
-"Fix bug 123456", "fixed bug #123456 and other message"
+"Fix bug 123456", "fixed bug #123456 and other message", "FIxEd bUg #123456"
 
 Examples for only comments:
-"For Bug #123456", "This text have no matter bug 123456"
+"For Bug #123456", "This text have no matter bUG 123456"
 
 ### Adding new event
 #### New pattern
