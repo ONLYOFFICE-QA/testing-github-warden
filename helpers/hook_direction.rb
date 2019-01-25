@@ -4,7 +4,7 @@ module HookDirection
     @bugzilla = OnlyofficeBugzillaHelper::BugzillaHelper.new
     YAML.load_file('config/warden_config.yml').each do |current_pattern|
       object.commits.each do |commit|
-        next unless commit.message =~ /#{current_pattern[:commit_message_pattern]}/
+        next unless commit.message.downcase =~ /#{current_pattern[:commit_message_pattern]}/
 
         bug_id = get_bug_id(commit)
         result[commit.id] = { commit_message: commit.message, bug_id: bug_id } unless result[commit.id]
@@ -19,7 +19,7 @@ module HookDirection
   end
 
   def get_bug_id(commit)
-    commit.message[/[B|b]ug.#?(\d+)/].to_s[/\d+/]
+    commit.message.downcase[/bug.#?(\d+)/].to_s[/\d+/]
   end
 
   def run_action(commit, action, branch, bug_id)
