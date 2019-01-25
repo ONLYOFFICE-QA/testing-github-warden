@@ -19,7 +19,7 @@ module HookDirection
   end
 
   def get_bug_id(commit)
-    commit.message[/[B|b]ug.#?(\d+)/].to_s[/\d+/]
+    commit.message.downcase[/bug.#?(\d+)/].to_s[/\d+/]
   end
 
   def run_action(commit, action, branch, bug_id)
