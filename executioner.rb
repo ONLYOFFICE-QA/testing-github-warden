@@ -8,16 +8,18 @@ include ExecutionerHelper
 @logger = Logger.new(STDOUT)
 @logger.info 'Executioner started'
 
-diagnostic()
+diagnostic
 
 loop do
-  data = JSON.parse(@redis.lpop("github_warden_action"))
-  data.values do |action_data|
-    case action_data['action']
-    when 'add_resolved_fixed'
-      add_resolved_fixed(action_data)
-    when 'add_comment'
-      add_comment(action_data)
+  data = @redis.lpop("github_warden_action")
+  if data
+    data.values do |action_data|
+      case action_data['action']
+      when 'add_resolved_fixed'
+        add_resolved_fixed(action_data)
+      when 'add_comment'
+        add_comment(action_data)
+      end
     end
   end
   sleep 60
