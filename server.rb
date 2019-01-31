@@ -11,6 +11,7 @@ class App < Sinatra::Base
 
   before do
     body = request.body.read
+    @redis = Redis.new(path: "tmp/redis/redis.sock")
     @object = GithubResponceObjects.new(JSON.parse(body)) unless body == ''
     @params = JSON.parse(body) unless body == ''
   end
@@ -25,6 +26,7 @@ class App < Sinatra::Base
   get '/' do
     @secret_token = !ENV['SECRET_TOKEN'].nil?
     @secret_api_key = !ENV['BUGZILLA_API_KEY'].nil?
+    logger.info "-> New result: #{@redis.lpush "github_warden_action", '12312312123'}"
     @threads_count = Thread.list.select { |thread| thread.status == 'run' }.count
     erb :index
   end
@@ -34,7 +36,8 @@ class App < Sinatra::Base
     payload_body = request.body.read
     verify_signature(payload_body)
     result = find_action(@object) if @object.commits
-    logger.info "-> New result: #{result}"
+    @redis.lpush "github_warden_action", result.to_s
+    logger.info "-> New result: #{result.to_s}"
     result.to_json
   end
 
