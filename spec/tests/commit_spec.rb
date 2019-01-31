@@ -24,7 +24,7 @@ describe 'Commit smoke' do
       commit_req['repository']['name'] = 'test_repo'
       commit_req['commits'][0]['message'] = 'test_commit_message'
       responce = http.post_request(params: commit_req)
-      expect(responce.body[commit_req['commits'][0]['id']].key?('test_action')).to be_truthy
+      expect(responce.body[commit_req['commits'][0]['id']].first['action']).to eq('test_action')
     end
   end
 
@@ -42,8 +42,9 @@ describe 'Commit smoke' do
       message = "Message: #{commit_req['commits'][0]['message']}"
       author = "Author: #{commit_req['commits'][0]['author']['name']}"
       responce_commit = responce.body[commit_req['commits'][0]['id']]
-      expect(responce_commit['commit_message']).to eq(commit_req['commits'][0]['message'])
-      expect(responce_commit['add_comment']['comment']).to eq("#{branch}\n#{commit}\n#{message}\n#{author}")
+      expect(responce_commit.first['commit_message']).to eq(commit_req['commits'][0]['message'])
+      expect(responce_commit.first['action']).to eq('add_comment')
+      expect(responce_commit.first['comment']).to eq("#{branch}\n#{commit}\n#{message}\n#{author}")
     end
 
     it 'check add_resolved_fixed and add_comment actions' do
@@ -53,9 +54,9 @@ describe 'Commit smoke' do
       commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
       commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
       responce = http.post_request(params: commit_req)
-      expect(responce.body[commit_req['commits'][0]['id']].key?('add_comment')).to be_truthy
-      expect(responce.body[commit_req['commits'][0]['id']]['bug_id']).to eq(StaticData::BUG_ID_TEST)
-      expect(responce.body[commit_req['commits'][0]['id']]['commit_message']).to eq(commit_req['commits'][0]['message'])
+      expect(responce.body[commit_req['commits'][0]['id']].size).to eq(2)
+      expect(responce.body[commit_req['commits'][0]['id']][0]['action']).to eq('add_resolved_fixed')
+      expect(responce.body[commit_req['commits'][0]['id']][1]['action']).to eq('add_comment')
     end
   end
 
