@@ -1,3 +1,4 @@
+require 'bundler/setup'
 require 'redis'
 require 'json'
 require 'logger'
