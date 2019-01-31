@@ -26,8 +26,7 @@ class App < Sinatra::Base
   get '/' do
     @secret_token = !ENV['SECRET_TOKEN'].nil?
     @secret_api_key = !ENV['BUGZILLA_API_KEY'].nil?
-    logger.info "-> New result: #{@redis.lpush "github_warden_action", '12312312123'}"
-    @threads_count = Thread.list.select { |thread| thread.status == 'run' }.count
+    @commits_count = @redis.lrange('github_warden_action', 0, -1).size
     erb :index
   end
 
@@ -36,8 +35,8 @@ class App < Sinatra::Base
     payload_body = request.body.read
     verify_signature(payload_body)
     result = find_action(@object) if @object.commits
-    @redis.lpush "github_warden_action", result.to_s
-    logger.info "-> New result: #{result.to_s}"
+    @redis.lpush "github_warden_action", result.to_json
+    logger.info "-> New result: #{result.to_json}"
     result.to_json
   end
 
