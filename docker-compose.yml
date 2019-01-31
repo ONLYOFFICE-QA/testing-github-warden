@@ -4,4 +4,33 @@ services:
     build: .
     ports:
       - "3000:3000"
+    volumes:
+      - ./tmp/redis/:/testing-github-warden/tmp/redis/
+    depends_on:
+      - redis
     restart: always
+
+  executioner:
+    build:
+      context: .
+      dockerfile: Executioner_Dockerfile
+
+    volumes:
+      - ./tmp/redis/:/testing-github-warden/tmp/redis/
+    command: ruby executioner.rb
+    depends_on:
+      - warden
+      - redis
+
+  redis:
+    image: redis
+    volumes:
+      - ./config:/data
+      - ./tmp/redis/:/tmp
+      - redis_data:/tmp
+    command: redis-server /data/redis.conf
+    restart: always
+
+volumes:
+  redis_data:
+
