@@ -9,6 +9,8 @@ services:
     depends_on:
       - redis
     restart: always
+    environment:
+      - SECRET_TOKEN=
 
   executioner:
     build:
@@ -21,6 +23,8 @@ services:
     depends_on:
       - warden
       - redis
+    environment:
+      - BUGZILLA_API_KEY=
 
   redis:
     image: redis
