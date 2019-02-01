@@ -10,7 +10,7 @@ services:
       - redis
     restart: always
     environment:
-      - SECRET_TOKEN=
+      - SECRET_TOKEN
 
   executioner:
     build:
@@ -23,8 +23,7 @@ services:
     depends_on:
       - redis
     environment:
-      - BUGZILLA_API_KEY=
-
+      - BUGZILLA_API_KEY
   redis:
     image: redis
     volumes:
