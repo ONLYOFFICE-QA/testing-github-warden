@@ -21,7 +21,6 @@ services:
       - ./tmp/redis/:/testing-github-warden/tmp/redis/
     command: ruby executioner.rb
     depends_on:
-      - warden
       - redis
     environment:
       - BUGZILLA_API_KEY=
