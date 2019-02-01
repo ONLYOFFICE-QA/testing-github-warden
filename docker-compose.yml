@@ -16,7 +16,7 @@ services:
     build:
       context: .
       dockerfile: Executioner_Dockerfile
-
+    tty: true
     volumes:
       - ./tmp/redis/:/testing-github-warden/tmp/redis/
     command: ruby executioner.rb
