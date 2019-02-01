@@ -5,7 +5,7 @@ class App < Sinatra::Base
   attr_accessor :params
 
   def initialize
-    @version = '0.0.2'
+    @version = '0.1.0'
     super
   end
 
