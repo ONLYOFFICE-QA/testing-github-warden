@@ -7,17 +7,32 @@ module ExecutionerHelper
 
   def add_resolved_fixed(action_data)
     @logger.info ">> Add RESOLVED/FIXED to bug #{action_data['bug_ud']}"
-    responce = @bugzilla.update_bug(action_data['bug_id'],
-                                    status: 'RESOLVED',
-                                    resolution: 'FIXED')
-    @logger.info "Bugzilla responce #{responce.body}"
+    responce = {}
+    5.times do |i|
+      @logger.info ">> Add(#{i + 1}) RESOLVED/FIXED to bug #{action_data['bug_ud']}"
+      responce = @bugzilla.update_bug(action_data['bug_id'],
+                                      status: 'RESOLVED',
+                                      resolution: 'FIXED')
+      @logger.info "Bugzilla responce #{responce.body}"
+
+      break unless responce['error']
+      @logger.info "Error found #{responce['error']}. Retrying..."
+      sleep 15
+    end
+    responce
   end
 
   def add_comment(action_data)
-    logger.info ">> Add comment to bug #{action_data['bug_id']}"
-    result = @bugzilla.add_comment(action_data['bug_id'], action_data['comment'])
-    logger.info "Bugzilla responce #{result.body}"
-    @logger.info 'add_comment'
+    responce = {}
+    5.times do |i|
+      @logger.info ">> Add(#{i + 1}) comment to bug #{action_data['bug_id']}"
+      responce = @bugzilla.add_comment(action_data['bug_id'], action_data['comment'])
+      @logger.info "Bugzilla responce #{responce.body}"
+      break unless responce['error']
+      @logger.info "Error found #{responce['error']}. Retrying..."
+      sleep 15
+    end
+    responce
   end
 
   def diagnostic()
