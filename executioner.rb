@@ -12,7 +12,8 @@ diagnostic
 
 loop do
   data = @redis.lpop("github_warden_action")
-  if data
+  data = JSON.parse(data) if data
+  if data.is_a?(Hash)
     data.values do |action_data|
       case action_data['action']
       when 'add_resolved_fixed'
