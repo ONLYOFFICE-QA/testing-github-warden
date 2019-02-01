@@ -13,11 +13,13 @@ class StaticData
                                "Fix bug ##{BUG_ID_TEST}",
                                "Fixed bug ##{BUG_ID_TEST}",
                                "[x2t] Fix bug #{BUG_ID_TEST}",
-                               "[x2t] Fix Bug #{BUG_ID_TEST}"].freeze
+                               "[x2t] Fix Bug #{BUG_ID_TEST}",
+                               "[x2t] fIx bUg #{BUG_ID_TEST}"].freeze
   COMMENT_ONLY = ["[se] Bug #{BUG_ID_TEST}",
                   "[se] R1C1 for bug #{BUG_ID_TEST}",
                   "[se] For bug #{BUG_ID_TEST} (sort first row)",
                   "[x2t] For bug #{BUG_ID_TEST}",
+                  "[x2t] For BUG #{BUG_ID_TEST}",
                   "[x2t] For Bug #{BUG_ID_TEST}",
                   "[se] For bug #{BUG_ID_TEST}
                     Fix calculate gradient without distance"].freeze

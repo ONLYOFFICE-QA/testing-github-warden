@@ -5,5 +5,4 @@ ENV BUGZILLA_API_KEY=''
 RUN mkdir /testing-github-warden
 WORKDIR /testing-github-warden
 ADD . /testing-github-warden
-RUN bundle install --without test development executioner
-CMD puma -C config/puma.rb
+RUN bundle install --without test development warden

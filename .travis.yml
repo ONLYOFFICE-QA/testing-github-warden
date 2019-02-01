@@ -1,8 +1,10 @@
 language: ruby
+services:
+  - docker
 install:
 - bundle install
 before_script:
-- bundle exec puma -C config/puma.rb -d
+- docker-compose up -d
 script:
 - bundle exec rspec spec/tests/
 env:
