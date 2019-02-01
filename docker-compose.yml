@@ -29,9 +29,7 @@ services:
   redis:
     image: redis
     volumes:
-      - ./config:/data
-      - ./tmp/redis/:/tmp
-      - redis_data:/tmp
+      - ./tmp/redis:/data
     command: redis-server /data/redis.conf
     restart: always
 
