@@ -16,7 +16,6 @@ class App < Sinatra::Base
     @params = JSON.parse(body) unless body == ''
   end
 
-
   configure do
     logger = Logger.new(STDOUT)
     logger.level = Logger::DEBUG if development?
@@ -25,8 +24,8 @@ class App < Sinatra::Base
 
   get '/' do
     @secret_token = !ENV['SECRET_TOKEN'].nil?
-    @secret_api_key = !ENV['BUGZILLA_API_KEY'].nil?
     @commits_count = @redis.lrange('github_warden_action', 0, -1).size
+    @redis_ping = @redis.ping == 'PONG'
     erb :index
   end
 
