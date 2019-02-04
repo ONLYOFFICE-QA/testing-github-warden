@@ -6,10 +6,11 @@ require 'onlyoffice_bugzilla_helper'
 module ExecutionerHelper
 
   def add_resolved_fixed(action_data)
-    @logger.info ">> Add RESOLVED/FIXED to bug #{action_data['bug_ud']}"
+    @logger.info ">> Add RESOLVED/FIXED to bug #{action_data['bug_id']}"
+    return unless change_status?(action_data)
     responce = {}
     5.times do |i|
-      @logger.info ">> Add(#{i + 1}) RESOLVED/FIXED to bug #{action_data['bug_ud']}"
+      @logger.info ">> Add(#{i + 1}) RESOLVED/FIXED to bug #{action_data['bug_id']}"
       responce = @bugzilla.update_bug(action_data['bug_id'],
                                       status: 'RESOLVED',
                                       resolution: 'FIXED')
@@ -35,9 +36,24 @@ module ExecutionerHelper
     responce
   end
 
-  def diagnostic()
-    bugzilla_key_exist = !ENV['BUGZILLA_API_KEY'].empty?
-    bugzilla_key_is_visible = !OnlyofficeBugzillaHelper::BugzillaHelper.read_token.empty?
+  def change_status?(action_data)
+    5.times do |i|
+      @logger.info "Getting(#{i + 1}) data of bug #{action_data['bug_id']}"
+      responce = @bugzilla.bug_data(action_data['bug_id'])
+      @logger.info "Bugzilla responce #{responce}"
+      if responce['error']
+        @logger.info "Error found #{responce['error']}. Retrying..."
+        sleep 15
+      else
+        status_change = %w[NEW REOPENED ASSIGNED].include?(responce['status'])
+        @logger.info "Bugzilla responce for bug : bug #{action_data['bug_id']} status #{responce['status']}. Status will #{'NOT ' unless status_change}change"
+        break status_change
+      end
+    end
+  end
+
+  def diagnostic
+    bugzilla_key_exist = !ENV['BUGZILLA_API_KEY'].nil? && ENV['BUGZILLA_API_KEY'] != ''
     redis_is_work = false
     begin
       @redis.lpush "test_list", 'test_note'
@@ -45,9 +61,8 @@ module ExecutionerHelper
     rescue
       redis_is_work = false
     end
-    all_right = bugzilla_key_exist && bugzilla_key_is_visible && redis_is_work
+    all_right = bugzilla_key_exist && redis_is_work
     @logger.info "bugzilla key exist: #{bugzilla_key_exist}"
-    @logger.info "bugzilla key is visible: #{bugzilla_key_is_visible}"
     @logger.info "redis is working: #{redis_is_work}"
     raise('Diagnostic error! See logs') unless all_right
     puts "████████████████████████████████

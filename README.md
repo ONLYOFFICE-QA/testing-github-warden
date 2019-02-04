@@ -2,13 +2,6 @@
 ### How to run
 Change dockerfile: need to add `SECRET_TOKEN` and `BUGZILLA_API_KEY`
 
-
-You cat build and run application from Docker
-```
-docker build . -t testing-github-warden
-docker run -itd -p 3000:3000 --restart always --name github-warden testing-github-warden
-```
-
 Or from docker-compose
 ```
 docker-compose up -d
@@ -18,6 +11,7 @@ There are easy way to update warden if you use docker-compose
 ```
 docker-compose up --build -d
 ```
+Don't forget to change important variables from docker_compose file:
 
 * `SECRET_TOKEN` - is a token from webhook settings (https://developer.github.com/webhooks/securing/)
 * `BUGZILLA_API_KEY` - is a key from bugzilla (https://bugzilla.readthedocs.io/en/latest/integrating/auth-delegation.html)
@@ -52,8 +46,8 @@ Example:
 All of this fields is a regular expression, but don't need to add `/` `/`  in start and end in this.
 Action is a custom name of action. Feel free to set something.
 
-#### New action
-
-All actions is placed in `helpers/hook_direction.rb`, in `run_action` method.
-You need to add new `when your_action_name`, and it will execute when all of patterns in one block will be match
+### For developer
+    
+    testing-github-warden is contains of 3 services: redis, warden and executer. Redis must share socket for work.
+    Wardel listen 3000 port and push data for actions to redis. And executer  listen redis and execute every action.
 
