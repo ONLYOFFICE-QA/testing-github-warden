@@ -1,0 +1,3 @@
+-
+  :repository_name_pattern: 'test'
+  :branch_pattern: 'test_branch_with_complex_name|develop|hotfix|release'
