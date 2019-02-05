@@ -3,6 +3,8 @@
 ### Changed
     New config file - allow branches. It need for perfoming actions only on special branches
     Actions will not be performed if bug contain comment with current commit hash
+### Fixed
+    Error if bugzilla is responsed 404 after getting comments
 ## [0.0.2] - 2019-01-25
 ### Changed
     All commits will compare afrer downcase

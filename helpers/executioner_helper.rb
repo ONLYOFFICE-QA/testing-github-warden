@@ -58,7 +58,9 @@ module ExecutionerHelper
     comments = []
     5.times do |i|
       @logger.info ">> Gettings(#{i + 1}) comments of bug #{bug_id}"
-      comments = @bugzilla.comments(bug_id)
+      begin
+        comments = @bugzilla.comments(bug_id)
+      end
       @logger.info "Bugzilla responce #{comments}"
 
       break if comments.is_a?(Array)
