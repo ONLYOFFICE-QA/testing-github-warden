@@ -54,4 +54,13 @@ describe 'Allowed branch smoke' do
       expect(responce.body[commit_req['commits'][0]['id']][1]['action']).to eq('add_comment')
     end
   end
+
+  it 'only repo name matched' do
+    commit_req = StaticData.repo_match_commit
+    commit_req['commits'][0]['message'] = 'Fix bug 39463'
+    commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
+    responce = http.post_request(params: commit_req)
+    expect(responce.body[commit_req['commits'][0]['id']].size).to eq(1)
+    expect(responce.body[commit_req['commits'][0]['id']][0]['action']).to eq('add_comment')
+  end
 end
