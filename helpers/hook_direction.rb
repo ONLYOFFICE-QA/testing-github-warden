@@ -30,7 +30,7 @@ module HookDirection
   def allowed_branch(object)
     allow = true
     YAML.load_file('config/allowed_branches.yml').each do |patterns|
-      next unless object.repository.name =~ /#{patterns[:repository_name_pattern]}/
+      next unless patterns[:repository_name_array].include? object.repository.name
       allow = false
       next unless object.branch =~/#{patterns[:branch_pattern]}/
       allow = true
