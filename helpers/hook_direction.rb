@@ -2,10 +2,10 @@ module HookDirection
   def find_action(object)
     # result has structure: {commit_id: [{commit_message: string, bug_id: number, }]}
     result = {}
-    # @bugzilla = OnlyofficeBugzillaHelper::BugzillaHelper.new
     YAML.load_file('config/warden_config.yml').each do |current_pattern|
       object.commits.each do |commit|
         next unless commit.message.downcase =~ /#{current_pattern[:commit_message_pattern]}/
+        next unless allowed_branch(object)
         bug_id = commit.message.downcase[/bug.#?(\d+)/].to_s[/\d+/]
         result[commit.id] = [] unless result[commit.id]
         result[commit.id] << { commit_message: commit.message,
@@ -22,6 +22,20 @@ module HookDirection
     message = "Message: #{commit.message}"
     author = "Author: #{commit.author.name}"
     "#{branch}\n#{commit.url}\n#{message}\n#{author}"
+  end
+
+  # method for adding access to change bug status
+  # If repository name is not found in allowed_branches.yml, bug status will change
+  # If repository is found in allowed_branches.yml, but branch name is not matched, bug status will not be change
+  def allowed_branch(object)
+    allow = false
+    YAML.load_file('config/allowed_branches.yml').each do |patterns|
+      next unless patterns[:repository_name_array].include? object.repository.name
+      next unless object.branch =~/#{patterns[:branch_pattern]}/
+      allow = true
+      break
+    end
+    allow
   end
   #
   #

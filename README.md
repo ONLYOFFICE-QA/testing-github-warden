@@ -17,9 +17,10 @@ Don't forget to change important variables from docker_compose file:
 * `BUGZILLA_API_KEY` - is a key from bugzilla (https://bugzilla.readthedocs.io/en/latest/integrating/auth-delegation.html)
 
 ### How it work?
-After any push to repo, that we activate webhooks, github will sent post request to serve.
+After any push to repo, that we activate webhooks, github will sent post request to server.
 This request contains commit message and other data.
-Server take all of them, and if message of commit is matched with pattern, action will be executed
+Server take all of them, and if message of commit is matched with pattern, and if commit has pushed to allowed repository and to allowed branch, action will be added to redis queue.
+Actions will not be perform if bug is contains comment with hash of commit. 
 
 
 At now, there are two actions: add comment and change status to RESOLVED.
@@ -34,8 +35,7 @@ Examples for only comments:
 "For Bug #123456", "This text have no matter bUG 123456"
 
 ### Adding new event
-#### New pattern
-At first, need to add new pattern to `config/warden_config.yml`
+Config for new pattern: `config/warden_config.yml`
 
 Example:
 
@@ -45,6 +45,15 @@ Example:
 ```
 All of this fields is a regular expression, but don't need to add `/` `/`  in start and end in this.
 Action is a custom name of action. Feel free to set something.
+
+### Adding repository and branch to allowed
+Need to change `config/allowed_branches.yml` for adding repositories and branches to allowed list.
+Example:
+```bash
+
+
+
+```
 
 ### For developer
     

@@ -52,6 +52,25 @@ module ExecutionerHelper
     end
   end
 
+  def bug_is_commented?(data)
+    commit_hash = data.keys[0]
+    bug_id = data.values[0][0]['bug_id']
+    comments = []
+    5.times do |i|
+      @logger.info ">> Gettings(#{i + 1}) comments of bug #{bug_id}"
+      comments = @bugzilla.comments(bug_id)
+      @logger.info "Bugzilla responce #{comments}"
+
+      break if comments.is_a?(Array)
+      @logger.info "Error found #{comments}. Retrying..."
+      sleep 15
+    end
+    result = comments.select do |comment|
+      comment['text'].include? commit_hash
+    end
+    !result.empty?
+  end
+
   def diagnostic
     bugzilla_key_exist = !ENV['BUGZILLA_API_KEY'].nil? && ENV['BUGZILLA_API_KEY'] != ''
     redis_is_work = false

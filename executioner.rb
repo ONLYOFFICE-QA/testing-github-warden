@@ -12,6 +12,7 @@ loop do
   data = @redis.lpop("github_warden_action")
   data = JSON.parse(data) if data
   if data.is_a?(Hash) && !data.empty?
+    next if bug_is_commented?(data)
     data.values[0].each do |action_data|
       case action_data['action']
       when 'add_resolved_fixed'
