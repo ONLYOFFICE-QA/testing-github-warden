@@ -28,10 +28,9 @@ module HookDirection
   # If repository name is not found in allowed_branches.yml, bug status will change
   # If repository is found in allowed_branches.yml, but branch name is not matched, bug status will not be change
   def allowed_branch(object)
-    allow = true
+    allow = false
     YAML.load_file('config/allowed_branches.yml').each do |patterns|
       next unless patterns[:repository_name_array].include? object.repository.name
-      allow = false
       next unless object.branch =~/#{patterns[:branch_pattern]}/
       allow = true
       break
