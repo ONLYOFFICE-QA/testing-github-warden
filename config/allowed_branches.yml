@@ -4,3 +4,6 @@
 -
   :repository_name_array: ['sdkjs', 'server','core', 'web-apps-pro', 'web-apps', 'desktop-apps', 'desktop-apps-ext', 'desktop-sdk', 'core-ext']
   :branch_pattern: 'develop|hotfix|release'
+-
+  :repository_name_array: ['portals', 'ControlPanel']
+  :branch_pattern: 'master|hotfix|release'
