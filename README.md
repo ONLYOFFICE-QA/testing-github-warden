@@ -49,14 +49,17 @@ Action is a custom name of action. Feel free to set something.
 ### Adding repository and branch to allowed
 Need to change `config/allowed_branches.yml` for adding repositories and branches to allowed list.
 Example:
-```bash
-
-
 
 ```
+    -
+        :repository_name_array: ['repo_name']
+        :branch_pattern: 'branch_name|other_branch_name'
+```
+
+repository_name_array must be array, branch_pattern must be regexp
 
 ### For developer
     
-    testing-github-warden is contains of 3 services: redis, warden and executer. Redis must share socket for work.
-    Wardel listen 3000 port and push data for actions to redis. And executer  listen redis and execute every action.
+testing-github-warden is contains of 3 services: redis, warden and executer. Redis must share socket for work.
+Warden listen 3000 port and push data for actions to redis. And executer  listen redis and execute every action.
 
