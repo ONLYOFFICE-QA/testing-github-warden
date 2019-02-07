@@ -12,17 +12,20 @@ loop do
   data = @redis.lpop("github_warden_action")
   data = JSON.parse(data) if data
   if data.is_a?(Hash) && !data.empty?
+    @logger.info "Current data #{data}"
     data.each do |hash, action_data|
       next if bug_is_commented?(hash, action_data)
-      case action_data['action']
-      when 'add_resolved_fixed'
-        add_resolved_fixed(action_data)
-      when 'add_comment'
-        add_comment(action_data)
-      when 'nothing'
-        @logger.info "Do nothing"
-      else
-        @logger.warn "Attention! Unknown action #{action_data}"
+      action_data.each do |action|
+        case action['action']
+        when 'add_resolved_fixed'
+          add_resolved_fixed(action)
+        when 'add_comment'
+          add_comment(action)
+        when 'nothing'
+          @logger.info "Do nothing"
+        else
+          @logger.warn "Attention! Unknown action #{action}"
+        end
       end
     end
   else
