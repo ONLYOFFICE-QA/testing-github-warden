@@ -1,6 +1,6 @@
 module HookDirection
   def find_action(object)
-    # result has structure: {commit_id: [{commit_message: string, bug_id: number, }]}
+    # result has structure: {commit_id: [{commit_message: string, bug_id: number, }], commit_id: ...}
     result = {}
     YAML.load_file('config/warden_config.yml').each do |current_pattern|
       object.commits.each do |commit|
