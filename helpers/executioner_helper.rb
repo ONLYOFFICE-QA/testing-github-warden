@@ -60,6 +60,8 @@ module ExecutionerHelper
       @logger.info ">> Gettings(#{i + 1}) comments of bug #{bug_id}"
       begin
         comments = @bugzilla.comments(bug_id)
+      rescue
+        @logger.warn "Bugzilla error!!"
       end
       @logger.info "Bugzilla responce #{comments}"
 
