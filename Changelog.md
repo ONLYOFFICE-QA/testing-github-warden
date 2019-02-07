@@ -1,8 +1,9 @@
 # Changelog
-## [0.1.1] - 2019-02-05
+## [0.1.2] - 2019-02-05
 ### Fixed
     Error after merge
-## [0.1.2] - 2019-02-07
+    Adding empty elements if action is "do nothing"
+## [0.1.1] - 2019-02-07
 ### Changed
     New config file - allow branches. It need for perfoming actions only on special branches
     Actions will not be performed if bug contain comment with current commit hash

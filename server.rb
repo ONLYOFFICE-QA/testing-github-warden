@@ -33,10 +33,14 @@ class App < Sinatra::Base
     request.body.rewind
     payload_body = request.body.read
     verify_signature(payload_body)
-    result = find_action(@object) if @object.commits
-    @redis.lpush "github_warden_action", result.to_json
-    logger.info "-> New result: #{result.to_json}"
-    result.to_json
+    if @object.commits
+      result = find_action(@object)
+      @redis.lpush "github_warden_action", result.to_json
+      logger.info "-> New result: #{result.to_json}"
+      result.to_json
+    else
+      nil.to_json
+    end
   end
 
   def verify_signature(payload_body)
