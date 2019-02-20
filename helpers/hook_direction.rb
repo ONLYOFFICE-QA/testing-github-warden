@@ -3,7 +3,7 @@ module HookDirection
     # result has structure: {commit_id: [{commit_message: string, bug_id: number, }], commit_id: ...}
     result = {}
     YAML.load_file('config/warden_config.yml').each do |current_pattern|
-      object.commits.each do |commit|
+      object.commits.reverse.each do |commit|
         next unless commit.message.downcase =~ /#{current_pattern[:commit_message_pattern]}/
         next unless allowed_branch(object)
         bug_id = commit.message.downcase[/bug.#?(\d+)/].to_s[/\d+/]
