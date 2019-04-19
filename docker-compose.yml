@@ -22,6 +22,7 @@ services:
     command: ruby executioner.rb
     depends_on:
       - redis
+    restart: always
     environment:
       - BUGZILLA_API_KEY
   redis:
