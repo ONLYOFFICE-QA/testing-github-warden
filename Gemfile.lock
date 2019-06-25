@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/onlyoffice-testing-robot/onlyoffice_bugzilla_helper.git
-  revision: 698ab947b9f9d85710a4649cb36966ad37d3a8af
+  revision: efd671ad0a8442dd0c94e34d4d505e3896ab6103
   specs:
     onlyoffice_bugzilla_helper (0.2.0)
 
