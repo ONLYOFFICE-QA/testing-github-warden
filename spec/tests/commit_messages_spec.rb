@@ -51,7 +51,7 @@ describe 'Commit smoke' do
       it "check '#{commit_message}' message for do nothing" do
         commit_req = StaticData.commit
         commit_req['commits'][0]['message'] = commit_message
-        commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Dota.hero}"
+        commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Games::Dota.hero}"
         commit_req['commits'][0]['author']['name'] = Faker::Movies::StarWars.character
         responce = http.post_request(params: commit_req)
         expect(responce.body).to be_empty
