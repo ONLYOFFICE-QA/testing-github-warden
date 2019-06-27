@@ -1,4 +1,4 @@
-FROM ruby:2.4.1
+FROM ruby:2.6
 ENV RACK_ENV=production
 ENV SECRET_TOKEN=''
 ENV BUGZILLA_API_KEY=''
