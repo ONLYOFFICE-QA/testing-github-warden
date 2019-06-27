@@ -51,7 +51,7 @@ describe 'Commit smoke' do
       commit_req['ref'] = 'refs/heads/test_branch_first'
       commit_req['html_url'] = "https://githubb-fake-rebo/test"
       commit_req['commits'][0]['message'] = 'Fix bug 39463'
-      commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
+      commit_req['commits'][0]['author']['name'] = Faker::Movies::StarWars.character
       responce = http.post_request(params: commit_req)
       expect(responce.body[commit_req['commits'][0]['id']].size).to eq(2)
       expect(responce.body[commit_req['commits'][0]['id']][0]['action']).to eq('add_resolved_fixed')

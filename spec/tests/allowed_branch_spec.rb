@@ -12,8 +12,8 @@ describe 'Allowed branch smoke' do
       commit_req = StaticData.commit
       commit_req['ref'] = 'refs/heads/branch_name'
       commit_req['commits'][0]['message'] = 'Fix bug 39463'
-      commit_req['repository']['name'] = Faker::StarWars.planet
-      commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
+      commit_req['repository']['name'] = Faker::Movies::StarWars.planet
+      commit_req['commits'][0]['author']['name'] = Faker::Movies::StarWars.character
       responce = http.post_request(params: commit_req)
       expect(responce.body).to be_empty
     end
@@ -22,8 +22,8 @@ describe 'Allowed branch smoke' do
       commit_req = StaticData.commit
       commit_req['ref'] = 'refs/heads/branch_name'
       commit_req['commits'][0]['message'] = 'Fix bug 39463'
-      commit_req['repository']['name'] = Faker::StarWars.planet
-      commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
+      commit_req['repository']['name'] = Faker::Movies::StarWars.planet
+      commit_req['commits'][0]['author']['name'] = Faker::Movies::StarWars.character
       responce = http.post_request(params: commit_req)
       expect(responce.body).to be_empty
     end
@@ -32,8 +32,8 @@ describe 'Allowed branch smoke' do
       commit_req = StaticData.commit
       commit_req['ref'] = 'refs/heads/test_branch_first'
       commit_req['commits'][0]['message'] = 'Fix bug 39463'
-      commit_req['repository']['name'] = Faker::StarWars.planet
-      commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
+      commit_req['repository']['name'] = Faker::Movies::StarWars.planet
+      commit_req['commits'][0]['author']['name'] = Faker::Movies::StarWars.character
       responce = http.post_request(params: commit_req)
       expect(responce.body).to be_empty
     end
@@ -43,7 +43,7 @@ describe 'Allowed branch smoke' do
       commit_req['ref'] = 'refs/heads/test_branch_first'
       commit_req['commits'][0]['message'] = 'Fix bug 39463'
       commit_req['repository']['name'] = 'test'
-      commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
+      commit_req['commits'][0]['author']['name'] = Faker::Movies::StarWars.character
       responce = http.post_request(params: commit_req)
       expect(responce.body[commit_req['commits'][0]['id']].size).to eq(2)
       expect(responce.body[commit_req['commits'][0]['id']][0]['action']).to eq('add_resolved_fixed')
@@ -55,7 +55,7 @@ describe 'Allowed branch smoke' do
     commit_req = StaticData.repo_match_commit
     commit_req['repository']['name'] = 'test'
     commit_req['commits'][0]['message'] = 'Fix bug 39463'
-    commit_req['commits'][0]['author']['name'] = Faker::StarWars.character
+    commit_req['commits'][0]['author']['name'] = Faker::Movies::StarWars.character
     responce = http.post_request(params: commit_req)
     expect(responce.body).to be_empty
   end
