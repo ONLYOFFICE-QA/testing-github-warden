@@ -4,7 +4,6 @@ group :warden do
   gem 'redis'
   gem 'puma' # web server
   gem 'sinatra' # main web framework
-  gem 'sinatra-contrib' # main web framework
 end
 
 group :executioner do
