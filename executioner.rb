@@ -5,13 +5,13 @@ require_relative 'helpers/executioner_helper'
 include ExecutionerHelper
 
 @logger = Logger.new(STDOUT)
-@redis = Redis.new(path: "tmp/redis/redis.sock")
+@redis = Redis.new(path: 'tmp/redis/redis.sock')
 @bugzilla = OnlyofficeBugzillaHelper::BugzillaHelper.new
 @logger.info 'Executioner started'
 diagnostic
 
 loop do
-  data = @redis.lpop("github_warden_action")
+  data = @redis.lpop('github_warden_action')
   begin
     data = JSON.parse(data) if data
     if data.is_a?(Hash) && !data.empty?
@@ -26,7 +26,7 @@ loop do
           when 'add_comment'
             add_comment(action)
           when 'nothing'
-            @logger.info "Do nothing"
+            @logger.info 'Do nothing'
           else
             @logger.warn "Attention! Unknown action #{action}"
           end
@@ -41,6 +41,6 @@ loop do
       end
     end
   rescue StandardError
-    @redis.lpush "github_warden_action", data.to_json
+    @redis.lpush 'github_warden_action', data.to_json
   end
 end

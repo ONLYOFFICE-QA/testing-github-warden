@@ -50,7 +50,7 @@ describe 'Commit smoke' do
     it 'check add_resolved_fixed and add_comment actions' do
       commit_req = StaticData.commit
       commit_req['ref'] = 'refs/heads/test_branch_first'
-      commit_req['html_url'] = "https://githubb-fake-rebo/test"
+      commit_req['html_url'] = 'https://githubb-fake-rebo/test'
       commit_req['commits'][0]['message'] = 'Fix bug 39463'
       commit_req['commits'][0]['author']['name'] = Faker::Movies::StarWars.character
       responce = http.post_request(params: commit_req)

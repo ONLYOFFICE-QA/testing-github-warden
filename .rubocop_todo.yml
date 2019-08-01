@@ -54,18 +54,6 @@ Style/MixinUsage:
   Exclude:
     - 'executioner.rb'
 
-# Offense count: 12
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'executioner.rb'
-    - 'helpers/executioner_helper.rb'
-    - 'server.rb'
-    - 'spec/tests/commit_messages_spec.rb'
-    - 'spec/tests/commit_spec.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.

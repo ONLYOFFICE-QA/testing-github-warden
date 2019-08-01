@@ -14,7 +14,7 @@ describe 'Commit smoke' do
         commit_req = StaticData.commit
         commit_req['commits'][0]['message'] = commit_message
         commit_req['ref'] = 'refs/heads/test_branch_first'
-        commit_req['html_url'] = "https://githubb-fake-rebo/test"
+        commit_req['html_url'] = 'https://githubb-fake-rebo/test'
         commit_req['commits'][0]['author']['name'] = Faker::Movies::StarWars.character
         responce = http.post_request(params: commit_req)
         responce_commit = responce.body[commit_req['commits'][0]['id']]
@@ -34,7 +34,7 @@ describe 'Commit smoke' do
         commit_req = StaticData.commit
         commit_req['commits'][0]['message'] = commit_message
         commit_req['ref'] = 'refs/heads/test_branch_first'
-        commit_req['html_url'] = "https://githubb-fake-rebo/test"
+        commit_req['html_url'] = 'https://githubb-fake-rebo/test'
         commit_req['commits'][0]['author']['name'] = Faker::Movies::StarWars.character
         responce = http.post_request(params: commit_req)
         responce_commit = responce.body[commit_req['commits'][0]['id']]
