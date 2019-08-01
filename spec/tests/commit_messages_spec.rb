@@ -18,8 +18,8 @@ describe 'Commit smoke' do
         responce_commit = responce.body[commit_req['commits'][0]['id']]
         result = responce_commit.find do |element|
           element['commit_message'] == commit_message &&
-              element['bug_id'] == StaticData::BUG_ID_TEST &&
-              element['action'] == 'add_resolved_fixed'
+            element['bug_id'] == StaticData::BUG_ID_TEST &&
+            element['action'] == 'add_resolved_fixed'
         end
         expect(result).not_to be_empty
       end
@@ -38,8 +38,8 @@ describe 'Commit smoke' do
         responce_commit = responce.body[commit_req['commits'][0]['id']]
         result = responce_commit.find do |element|
           element['commit_message'] == commit_message &&
-              element['bug_id'] == StaticData::BUG_ID_TEST &&
-              element['action'] == 'add_comment'
+            element['bug_id'] == StaticData::BUG_ID_TEST &&
+            element['action'] == 'add_comment'
         end
         expect(result).not_to be_empty
       end
