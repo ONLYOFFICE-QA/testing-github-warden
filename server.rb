@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'management'
 class App < Sinatra::Base
   helpers Sinatra::CustomLogger

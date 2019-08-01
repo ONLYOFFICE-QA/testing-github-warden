@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Is a service for commenting and closing bugs from bugzilla
 require_relative 'helpers/executioner_helper'
 include ExecutionerHelper

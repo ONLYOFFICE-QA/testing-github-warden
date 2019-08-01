@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require_relative '../../spec/data/abstract_request'
 class StaticData
   extend AbstractRequest
-  ADDRESS = '0.0.0.0'.freeze
+  ADDRESS = '0.0.0.0'
   PORT = 3000
-  MAINPAGE = "http://#{ADDRESS}:#{PORT}".freeze
-  SECRET_TOKEN = '12345'.freeze
-  WRONG_HTTP_X_HUB_SIGNATURE = 'sha1=wrong_key'.freeze
-  BUG_ID_TEST = '39463'.freeze
+  MAINPAGE = "http://#{ADDRESS}:#{PORT}"
+  SECRET_TOKEN = '12345'
+  WRONG_HTTP_X_HUB_SIGNATURE = 'sha1=wrong_key'
+  BUG_ID_TEST = '39463'
 
   CHANGE_STATUS_AND_COMMENT = ["[se] Fix bug #{BUG_ID_TEST}",
                                "[charts] Fix bug #{BUG_ID_TEST}",

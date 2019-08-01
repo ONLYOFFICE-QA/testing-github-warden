@@ -49,13 +49,6 @@ Style/Documentation:
     - 'helpers/hook_direction.rb'
     - 'server.rb'
 
-# Offense count: 21
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: always, never
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
 # Offense count: 1
 Style/MixinUsage:
   Exclude:

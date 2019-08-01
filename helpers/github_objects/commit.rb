@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'author'
 class Commit
   attr_accessor :id, :message, :url, :author

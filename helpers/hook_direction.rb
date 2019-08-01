@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HookDirection
   def find_action(object)
     # result has structure: {commit_id: [{commit_message: string, bug_id: number, }], commit_id: ...}
