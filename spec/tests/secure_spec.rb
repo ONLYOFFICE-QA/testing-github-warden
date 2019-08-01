@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../test_management'
 
 http = nil
@@ -7,7 +9,6 @@ describe 'Secure smoke' do
   end
 
   describe 'Secure' do
-
     it 'Secure | ping' do
       responce = http.post_request(params: StaticData.ping)
       expect(responce.body).to be_nil

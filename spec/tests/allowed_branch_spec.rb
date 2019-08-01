@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../test_management'
 
 http = nil
@@ -7,7 +9,6 @@ describe 'Allowed branch smoke' do
   end
 
   describe 'Allowed branch' do
-
     it 'check status is changed if repo name is not found' do
       commit_req = StaticData.commit
       commit_req['ref'] = 'refs/heads/branch_name'

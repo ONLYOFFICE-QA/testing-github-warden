@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'github_objects/repository'
 require_relative 'github_objects/commit'
 class GithubResponceObjects

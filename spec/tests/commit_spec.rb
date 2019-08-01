@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../test_management'
 
 http = nil
@@ -31,7 +33,6 @@ describe 'Commit smoke' do
   end
 
   describe 'Actions' do
-
     it 'check add_comment action' do
       commit_req = StaticData.commit
       commit_req['repository']['name'] = 'test'
@@ -49,7 +50,7 @@ describe 'Commit smoke' do
     it 'check add_resolved_fixed and add_comment actions' do
       commit_req = StaticData.commit
       commit_req['ref'] = 'refs/heads/test_branch_first'
-      commit_req['html_url'] = "https://githubb-fake-rebo/test"
+      commit_req['html_url'] = 'https://githubb-fake-rebo/test'
       commit_req['commits'][0]['message'] = 'Fix bug 39463'
       commit_req['commits'][0]['author']['name'] = Faker::Movies::StarWars.character
       responce = http.post_request(params: commit_req)
@@ -58,5 +59,4 @@ describe 'Commit smoke' do
       expect(responce.body[commit_req['commits'][0]['id']][1]['action']).to eq('add_comment')
     end
   end
-
 end

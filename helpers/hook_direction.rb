@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module HookDirection
   def find_action(object)
     # result has structure: {commit_id: [{commit_message: string, bug_id: number, }], commit_id: ...}
@@ -6,12 +8,13 @@ module HookDirection
       object.commits.reverse.each do |commit|
         next unless commit.message.downcase =~ /#{current_pattern[:commit_message_pattern]}/
         next unless allowed_branch(object)
+
         bug_id = commit.message.downcase[/bug.#?(\d+)/].to_s[/\d+/]
         result[commit.id] = [] unless result[commit.id]
         result[commit.id] << { commit_message: commit.message,
                                comment: create_full_comment(commit, object.branch),
                                bug_id: bug_id,
-                               action: current_pattern[:action]}
+                               action: current_pattern[:action] }
       end
     end
     result
@@ -31,7 +34,8 @@ module HookDirection
     allow = false
     YAML.load_file('config/allowed_branches.yml').each do |patterns|
       next unless patterns[:repository_name_array].include? object.repository.name
-      next unless object.branch =~/#{patterns[:branch_pattern]}/
+      next unless object.branch =~ /#{patterns[:branch_pattern]}/
+
       allow = true
       break
     end

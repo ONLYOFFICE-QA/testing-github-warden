@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'management'
 class App < Sinatra::Base
   helpers Sinatra::CustomLogger
@@ -11,7 +13,7 @@ class App < Sinatra::Base
 
   before do
     body = request.body.read
-    @redis = Redis.new(path: "tmp/redis/redis.sock")
+    @redis = Redis.new(path: 'tmp/redis/redis.sock')
     @object = GithubResponceObjects.new(JSON.parse(body)) unless body == ''
     @params = JSON.parse(body) unless body == ''
   end
@@ -35,7 +37,7 @@ class App < Sinatra::Base
     verify_signature(payload_body)
     if @object.commits
       result = find_action(@object)
-      @redis.lpush "github_warden_action", result.to_json
+      @redis.lpush 'github_warden_action', result.to_json
       logger.info "-> New result: #{result.to_json}"
       result.to_json
     else

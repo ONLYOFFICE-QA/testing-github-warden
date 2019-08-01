@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'author'
 class Author
   attr_accessor :name, :email, :username

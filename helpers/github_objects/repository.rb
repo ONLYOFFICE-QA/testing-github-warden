@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Repository
   attr_accessor :name, :full_name
   def initialize(params)
