@@ -16,6 +16,7 @@ loop do
       @logger.info "Current data #{data}"
       data.each do |hash, action_data|
         next if bug_is_commented?(hash, action_data)
+
         action_data.each do |action|
           case action['action']
           when 'add_resolved_fixed'

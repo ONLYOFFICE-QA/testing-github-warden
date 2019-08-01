@@ -6,6 +6,7 @@ module HookDirection
       object.commits.reverse.each do |commit|
         next unless commit.message.downcase =~ /#{current_pattern[:commit_message_pattern]}/
         next unless allowed_branch(object)
+
         bug_id = commit.message.downcase[/bug.#?(\d+)/].to_s[/\d+/]
         result[commit.id] = [] unless result[commit.id]
         result[commit.id] << { commit_message: commit.message,
@@ -32,6 +33,7 @@ module HookDirection
     YAML.load_file('config/allowed_branches.yml').each do |patterns|
       next unless patterns[:repository_name_array].include? object.repository.name
       next unless object.branch =~/#{patterns[:branch_pattern]}/
+
       allow = true
       break
     end
