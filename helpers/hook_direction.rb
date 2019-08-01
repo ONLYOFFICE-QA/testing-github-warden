@@ -12,7 +12,7 @@ module HookDirection
         result[commit.id] << { commit_message: commit.message,
                                comment: create_full_comment(commit, object.branch),
                                bug_id: bug_id,
-                               action: current_pattern[:action]}
+                               action: current_pattern[:action] }
       end
     end
     result
