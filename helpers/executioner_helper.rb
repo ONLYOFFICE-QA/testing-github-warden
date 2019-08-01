@@ -65,7 +65,7 @@ module ExecutionerHelper
       @logger.info ">> Gettings(#{i + 1}) comments of bug #{bug_id}"
       begin
         comments = @bugzilla.comments(bug_id)
-      rescue
+      rescue StandardError
         @logger.warn "Bugzilla error!!"
       end
       @logger.info "Bugzilla responce #{comments}"
@@ -87,7 +87,7 @@ module ExecutionerHelper
     begin
       @redis.lpush "test_list", 'test_note'
       redis_is_work = 'test_note' == @redis.lpop("test_list")
-    rescue
+    rescue StandardError
       redis_is_work = false
     end
     all_right = bugzilla_key_exist && redis_is_work

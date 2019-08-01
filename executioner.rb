@@ -40,7 +40,7 @@ loop do
         sleep 60
       end
     end
-  rescue
+  rescue StandardError
     @redis.lpush "github_warden_action", data.to_json
   end
 end
