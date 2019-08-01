@@ -4,7 +4,6 @@ require 'json'
 require 'logger'
 require 'onlyoffice_bugzilla_helper'
 module ExecutionerHelper
-
   def add_resolved_fixed(action_data)
     @logger.info ">> Add RESOLVED/FIXED to bug #{action_data['bug_id']}"
     return unless change_status?(action_data)
