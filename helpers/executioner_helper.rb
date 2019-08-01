@@ -86,7 +86,7 @@ module ExecutionerHelper
     redis_is_work = false
     begin
       @redis.lpush 'test_list', 'test_note'
-      redis_is_work = 'test_note' == @redis.lpop('test_list')
+      redis_is_work = @redis.lpop('test_list') == 'test_note'
     rescue StandardError
       redis_is_work = false
     end
