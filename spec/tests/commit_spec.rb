@@ -31,7 +31,6 @@ describe 'Commit smoke' do
   end
 
   describe 'Actions' do
-
     it 'check add_comment action' do
       commit_req = StaticData.commit
       commit_req['repository']['name'] = 'test'
@@ -58,5 +57,4 @@ describe 'Commit smoke' do
       expect(responce.body[commit_req['commits'][0]['id']][1]['action']).to eq('add_comment')
     end
   end
-
 end
