@@ -9,7 +9,7 @@ module HookDirection
         next unless commit.message.downcase =~ /#{current_pattern[:commit_message_pattern]}/
         next unless allowed_branch(object)
 
-        bug_id = commit.message.downcase[/bug.#?(\d+)/].to_s[/\d+/]
+        bug_id = commit.message.downcase[/bug\s+#?(\d+)/].to_s[/\d+/]
         result[commit.id] = [] unless result[commit.id]
         result[commit.id] << { commit_message: commit.message,
                                comment: create_full_comment(commit, object.branch),
