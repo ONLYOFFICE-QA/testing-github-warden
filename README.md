@@ -63,3 +63,21 @@ repository_name_array must be array, branch_pattern must be regexp
 testing-github-warden is contains of 3 services: redis, warden and executer. Redis must share socket for work.
 Warden listen 3000 port and push data for actions to redis. And executer  listen redis and execute every action.
 
+### For testing
+
+ Run server and tests in same keys:
+ 
+    ```bash
+        SECRET_TOKEN='1234' BUGZILLA_API_KEY='<api key>' docker-compose up -d
+        
+        SECRET_TOKEN='1234' BUGZILLA_API_KEY='<api key>' bundle exec rspec spec/tests/
+    ```
+
+### For debugging
+
+ If you want to debugging server, you need to run it without docker.
+ 
+
+ For running server on debug, use `config.ru` file, and don't forget to add env variables to this file if you using IDE with special environment space (like rubymine)
+ 
+ For running test on debug, change spec/data/static_data.rb:PORT to `9292`, and add env variables to `spec/spec_helper.rb`
