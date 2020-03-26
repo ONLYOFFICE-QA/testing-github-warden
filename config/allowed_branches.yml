@@ -2,7 +2,7 @@
   :repository_name_array: ['test']
   :branch_pattern: 'test_branch_first|test_branch_other'
 -
-  :repository_name_array: ['sdkjs', 'server','core', 'web-apps-pro', 'web-apps', 'desktop-apps', 'desktop-apps-ext', 'desktop-sdk', 'core-ext', 'mobile-apps']
+  :repository_name_array: ['sdkjs', 'server','core', 'web-apps-pro', 'web-apps', 'desktop-apps', 'desktop-apps-ext', 'desktop-sdk', 'core-ext', 'mobile-apps', 'web-apps-mobile']
   :branch_pattern: 'develop|hotfix|release'
 -
   :repository_name_array: ['portals', 'ControlPanel']
