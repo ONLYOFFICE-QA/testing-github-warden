@@ -11,7 +11,7 @@ group :warden do
 end
 
 group :executioner do
-  gem 'onlyoffice_bugzilla_helper', git: 'https://github.com/onlyoffice-testing-robot/onlyoffice_bugzilla_helper.git'
+  gem 'onlyoffice_bugzilla_helper'
 end
 
 group :test do
