@@ -7,4 +7,3 @@ WORKDIR /testing-github-warden
 ADD . /testing-github-warden
 RUN gem update bundler
 RUN bundle config set without 'test development warden' && bundle install
-
