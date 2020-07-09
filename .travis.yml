@@ -2,6 +2,7 @@ language: ruby
 services:
   - docker
 install:
+- gem update bundler
 - bundle install
 before_script:
 - docker-compose up -d
