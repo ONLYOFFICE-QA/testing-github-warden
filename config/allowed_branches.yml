@@ -5,7 +5,7 @@
   :repository_name_array: ['sdkjs', 'server','core', 'web-apps-pro', 'web-apps',
                            'desktop-apps', 'desktop-apps-ext', 'desktop-sdk', 'core-ext',
                            'mobile-apps', 'web-apps-mobile', 'sdkjs-pivot-tables', 'sdkjs-sheet-views',
-                           'documents-app-ios', 'editors-ios']
+                           'documents-app-ios', 'editors-ios', 'documents-android']
 
   :branch_pattern: 'develop|hotfix|release'
 -
