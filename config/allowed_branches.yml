@@ -9,5 +9,5 @@
 
   :branch_pattern: 'develop|hotfix|release'
 -
-  :repository_name_array: ['portals', 'ControlPanel']
+  :repository_name_array: ['portals', 'ControlPanel', 'ControlPanel_Private']
   :branch_pattern: 'master|hotfix|release'
