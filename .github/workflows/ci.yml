@@ -19,8 +19,11 @@ jobs:
           ruby-version: 2.7
       - name: Start services in docker-compose
         run: docker-compose up -d
-      - name: run rspec tests
+      - name: Install bundler dependencies
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
-          bundle exec rspec spec/tests --fail-fast
+      - name: Check source files using `rubocop`
+        run: rubocop
+      - name: run tests
+        run: bundle exec rspec spec/tests --fail-fast
