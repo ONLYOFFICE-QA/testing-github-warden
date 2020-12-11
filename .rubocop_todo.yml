@@ -90,13 +90,6 @@ RSpec/ExampleLength:
     - 'spec/tests/commit_messages_spec.rb'
     - 'spec/tests/commit_spec.rb'
 
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: .
-# SupportedStyles: implicit, each, example
-RSpec/HookArgument:
-  EnforcedStyle: each
-
 # Offense count: 6
 RSpec/MultipleExpectations:
   Max: 3

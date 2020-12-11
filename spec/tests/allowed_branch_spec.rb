@@ -4,7 +4,7 @@ require_relative '../test_management'
 
 http = nil
 describe 'Allowed branch smoke' do
-  before :each do
+  before do
     http = Http.new
   end
 
