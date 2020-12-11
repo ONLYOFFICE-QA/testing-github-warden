@@ -6,33 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 4
-# Cop supports --auto-correct.
-# Configuration parameters: AllowAliasSyntax, AllowedMethods.
-# AllowedMethods: alias_method, public, protected, private
-Layout/EmptyLinesAroundAttributeAccessor:
-  Exclude:
-    - 'helpers/github_objects/author.rb'
-    - 'helpers/github_objects/commit.rb'
-    - 'helpers/github_objects/repository.rb'
-    - 'helpers/github_responce_object.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceInsideHashLiteralBraces:
-  EnforcedStyle: space
-
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: final_newline, final_blank_line
-Layout/TrailingEmptyLines:
-  Exclude:
-    - 'Gemfile'
-
 # Offense count: 1
 # Configuration parameters: AllowComments.
 Lint/EmptyClass:

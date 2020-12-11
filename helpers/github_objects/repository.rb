@@ -2,6 +2,7 @@
 
 class Repository
   attr_accessor :name, :full_name
+
   def initialize(params)
     @name = params['name']
     @full_name = params['full_name']
