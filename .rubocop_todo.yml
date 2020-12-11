@@ -55,12 +55,6 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Max: 19
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Performance/Detect:
-  Exclude:
-    - 'helpers/executioner_helper.rb'
-
 
 # Offense count: 4
 # Configuration parameters: IgnoredMetadata.
