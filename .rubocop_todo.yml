@@ -67,12 +67,6 @@ Performance/RegexpMatch:
   Exclude:
     - 'helpers/hook_direction.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Performance/ReverseEach:
-  Exclude:
-    - 'helpers/hook_direction.rb'
-
 # Offense count: 4
 # Configuration parameters: IgnoredMetadata.
 RSpec/DescribeClass:
