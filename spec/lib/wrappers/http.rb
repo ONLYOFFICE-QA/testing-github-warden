@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'net/http'
-require_relative '../../test_management'
+require 'spec_helper'
+
 class Http
   attr_accessor :http
 

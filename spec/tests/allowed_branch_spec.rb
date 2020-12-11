@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative '../test_management'
+require 'spec_helper'
 
 http = nil
 describe 'Allowed branch smoke' do

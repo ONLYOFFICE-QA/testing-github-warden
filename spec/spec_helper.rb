@@ -98,3 +98,12 @@ RSpec.configure do |config|
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
 end
+
+require 'rspec'
+require 'net/http'
+require 'openssl'
+require 'json'
+require 'faker'
+require_relative 'data/static_data'
+require_relative 'data/abstract_request'
+require_relative 'lib/wrappers/http'
