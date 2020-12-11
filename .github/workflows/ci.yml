@@ -1,0 +1,17 @@
+name: ci
+on: [push]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Start services in docker-compose
+        env:
+          BUGZILLA_API_KEY: ${{ secrets.BUGZILLA_API_KEY }}
+          SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
+        run: docker-compose up -d
+      - name: run rspec tests
+        run: |
+          gem install bundler
+          bundle install --jobs 4 --retry 3
+          bundle exec rspec spec/tests --fail-fast
