@@ -1,5 +1,9 @@
 # Changelog
 
+### New Features
+
+* Add `markdownlint` checks to CI
+
 ### Changes
 
 * Use GitHub Actions instead of TravisCI
