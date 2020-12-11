@@ -5,6 +5,7 @@
 ### New Features
 
 * Add `markdownlint` checks to CI
+* Add `rubocop` support
 
 ### Changes
 
