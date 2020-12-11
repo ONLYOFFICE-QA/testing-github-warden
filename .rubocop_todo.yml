@@ -132,13 +132,6 @@ Style/MixinUsage:
   Exclude:
     - 'executioner.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/StringConcatenation:
-  Exclude:
-    - 'server.rb'
-    - 'spec/lib/wrappers/http.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: AutoCorrect, AllowHeredoc, AllowURI, URISchemes, IgnoreCopDirectives, IgnoredPatterns.
