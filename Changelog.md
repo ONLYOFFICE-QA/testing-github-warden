@@ -1,4 +1,9 @@
 # Changelog
+
+### Changes
+
+* Use GitHub Actions instead of TravisCI
+
 ## [0.1.3] - 2019-02-20
 ### Fixed
     Change commit sorting to reverse because it is real action sorting
