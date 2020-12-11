@@ -61,11 +61,6 @@ Performance/Detect:
   Exclude:
     - 'helpers/executioner_helper.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Performance/RegexpMatch:
-  Exclude:
-    - 'helpers/hook_direction.rb'
 
 # Offense count: 4
 # Configuration parameters: IgnoredMetadata.

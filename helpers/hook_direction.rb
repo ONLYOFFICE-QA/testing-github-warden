@@ -6,7 +6,7 @@ module HookDirection
     result = {}
     YAML.load_file('config/warden_config.yml').each do |current_pattern|
       object.commits.reverse_each do |commit|
-        next unless commit.message.downcase =~ /#{current_pattern[:commit_message_pattern]}/
+        next unless /#{current_pattern[:commit_message_pattern]}/.match?(commit.message.downcase)
         next unless allowed_branch(object)
 
         bug_id = commit.message.downcase[/bug\s+#?(\d+)/].to_s[/\d+/]
@@ -34,7 +34,7 @@ module HookDirection
     allow = false
     YAML.load_file('config/allowed_branches.yml').each do |patterns|
       next unless patterns[:repository_name_array].include? object.repository.name
-      next unless object.branch =~ /#{patterns[:branch_pattern]}/
+      next unless /#{patterns[:branch_pattern]}/.match?(object.branch)
 
       allow = true
       break
