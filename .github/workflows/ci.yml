@@ -5,6 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Set up Ruby 2.7
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.7
       - name: Start services in docker-compose
         env:
           BUGZILLA_API_KEY: ${{ secrets.BUGZILLA_API_KEY }}
