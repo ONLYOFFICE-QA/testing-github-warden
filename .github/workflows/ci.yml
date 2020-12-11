@@ -3,6 +3,9 @@ on: [push]
 jobs:
   ci:
     runs-on: ubuntu-latest
+    env:
+      BUGZILLA_API_KEY: ${{ secrets.BUGZILLA_API_KEY }}
+      SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - name: Set up Ruby 2.7
@@ -10,9 +13,6 @@ jobs:
         with:
           ruby-version: 2.7
       - name: Start services in docker-compose
-        env:
-          BUGZILLA_API_KEY: ${{ secrets.BUGZILLA_API_KEY }}
-          SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
         run: docker-compose up -d
       - name: run rspec tests
         run: |
