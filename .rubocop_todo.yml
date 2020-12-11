@@ -119,14 +119,6 @@ Style/Documentation:
     - 'helpers/hook_direction.rb'
     - 'server.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-Style/GlobalStdStream:
-  Exclude:
-    - 'config.ru'
-    - 'executioner.rb'
-    - 'server.rb'
-
 # Offense count: 1
 Style/MixinUsage:
   Exclude:
