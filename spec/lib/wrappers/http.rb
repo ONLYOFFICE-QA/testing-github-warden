@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 require 'net/http'
-require_relative '../../test_management'
+require 'spec_helper'
+
 class Http
   attr_accessor :http
 
@@ -28,6 +29,6 @@ class Http
   end
 
   def generate_signature(params)
-    'sha1=' + OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), ENV['SECRET_TOKEN'], params.to_json)
+    "sha1=#{OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), ENV['SECRET_TOKEN'], params.to_json)}"
   end
 end

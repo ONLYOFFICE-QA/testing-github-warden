@@ -4,7 +4,7 @@
 require_relative 'helpers/executioner_helper'
 include ExecutionerHelper
 
-@logger = Logger.new(STDOUT)
+@logger = Logger.new($stdout)
 @redis = Redis.new(path: 'tmp/redis/redis.sock')
 @bugzilla = OnlyofficeBugzillaHelper::BugzillaHelper.new
 @logger.info 'Executioner started'

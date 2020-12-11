@@ -59,7 +59,7 @@ module ExecutionerHelper
   def bug_is_commented?(commit_hash, action_data)
     return true if action_data.select { |action| action['bug_id'] }.empty?
 
-    bug_id = action_data.select { |action| action['bug_id'] }.first['bug_id']
+    bug_id = action_data.find { |action| action['bug_id'] }['bug_id']
     comments = []
     5.times do |i|
       @logger.info ">> Gettings(#{i + 1}) comments of bug #{bug_id}"

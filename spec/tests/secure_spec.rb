@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../test_management'
+require 'spec_helper'
 
 http = nil
 describe 'Secure smoke' do
-  before :each do
+  before do
     http = Http.new
   end
 
@@ -22,7 +22,7 @@ describe 'Secure smoke' do
 
     it 'Secure | wrong signature' do
       responce = http.post_request(params: StaticData.commit,
-                                   headers: {'X_HUB_SIGNATURE' => StaticData::WRONG_HTTP_X_HUB_SIGNATURE })
+                                   headers: { 'X_HUB_SIGNATURE' => StaticData::WRONG_HTTP_X_HUB_SIGNATURE })
       expect(responce.body['errors'].size).to eq(1)
       expect(responce.body['errors'][0]).to eq('Wrong signatures')
     end

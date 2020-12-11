@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../test_management'
+require 'spec_helper'
 
 http = nil
 describe 'Commit smoke' do
-  before :each do
+  before do
     http = Http.new
   end
 

@@ -6,7 +6,7 @@ require_relative 'server'
 run Rack::URLMap.new('/' => App)
 
 configure do
-  set :logger, Logger.new(STDOUT)
+  set :logger, Logger.new($stdout)
   set :server, :puma
   set :root, File.dirname(__FILE__)
   enable :static
