@@ -6,6 +6,7 @@
 
 * Add `markdownlint` checks to CI
 * Add `rubocop` support
+* Add `dependabot` config
 
 ### Changes
 
