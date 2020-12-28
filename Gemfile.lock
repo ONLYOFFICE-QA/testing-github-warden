@@ -23,7 +23,7 @@ GEM
       rack
     rainbow (3.0.0)
     redis (4.2.5)
-    regexp_parser (2.0.2)
+    regexp_parser (2.0.3)
     rexml (3.2.4)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
