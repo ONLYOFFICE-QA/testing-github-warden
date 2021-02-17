@@ -2,13 +2,28 @@
   :repository_name_array: ['test']
   :branch_pattern: 'test_branch_first|test_branch_other'
 -
-  :repository_name_array: ['sdkjs', 'server','core', 'web-apps-pro', 'web-apps',
-                           'desktop-apps', 'desktop-apps-ext', 'desktop-sdk', 'core-ext',
-                           'mobile-apps', 'web-apps-mobile', 'sdkjs-pivot-tables', 'sdkjs-sheet-views',
-                           'documents-app-ios', 'editors-ios', 'documents-android',
-                           'documents-app-android', 'document-android-editors']
+  :repository_name_array: ['core',
+                           'core-ext',
+                           'desktop-apps',
+                           'desktop-apps-ext',
+                           'desktop-sdk',
+                           'document-android-editors',
+                           'documents-android',
+                           'documents-app-android',
+                           'documents-app-ios',
+                           'editors-ios',
+                           'mobile-apps',
+                           'sdkjs',
+                           'sdkjs-pivot-tables',
+                           'sdkjs-sheet-views',
+                           'server',
+                           'web-apps',
+                           'web-apps-mobile',
+                           'web-apps-pro']
 
   :branch_pattern: 'develop|hotfix|release'
 -
-  :repository_name_array: ['portals', 'ControlPanel', 'ControlPanel_Private']
+  :repository_name_array: ['ControlPanel',
+                           'ControlPanel_Private',
+                           'portals']
   :branch_pattern: 'master|hotfix|release'
