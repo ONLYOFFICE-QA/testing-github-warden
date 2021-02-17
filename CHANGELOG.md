@@ -11,6 +11,7 @@
 ### Changes
 
 * Use GitHub Actions instead of TravisCI
+* Sort alphabetically list of repos in default config
 
 ## 0.1.3 (2019-02-20)
 
