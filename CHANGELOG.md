@@ -7,6 +7,7 @@
 * Add `markdownlint` checks to CI
 * Add `rubocop` support
 * Add `dependabot` config
+* Add `.gitignore` file
 
 ### Changes
 
