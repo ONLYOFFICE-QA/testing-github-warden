@@ -2,7 +2,8 @@
   :repository_name_array: ['test']
   :branch_pattern: 'test_branch_first|test_branch_other'
 -
-  :repository_name_array: ['core',
+  :repository_name_array: ['build_tools',
+                           'core',
                            'core-ext',
                            'desktop-apps',
                            'desktop-apps-ext',
