@@ -13,6 +13,7 @@
 
 * Use GitHub Actions instead of TravisCI
 * Sort alphabetically list of repos in default config
+* Log any error which happened during bug handling
 
 ## 0.1.3 (2019-02-20)
 

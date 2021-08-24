@@ -40,7 +40,8 @@ loop do
         sleep 60
       end
     end
-  rescue StandardError
+  rescue StandardError => e
+    @logger.warn("Error `#{e}` happened while handling `#{data}`. Returning data to redis")
     @redis.lpush 'github_warden_action', data.to_json
   end
 end
