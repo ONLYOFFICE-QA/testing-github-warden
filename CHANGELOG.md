@@ -11,6 +11,7 @@
 
 ### Changes
 
+* Major refactoring of Executioner, add new tests for it
 * Use GitHub Actions instead of TravisCI
 * Sort alphabetically list of repos in default config
 * Log any error which happened during bug handling
