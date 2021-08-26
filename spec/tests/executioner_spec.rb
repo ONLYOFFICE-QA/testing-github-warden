@@ -19,6 +19,10 @@ describe Executioner do
   end
 
   describe 'bug_should_be_handled?' do
+    it 'bug_should_be_handled return false if no bug data hook data' do
+      expect(executioner.bug_should_be_handled?([{ a: 'b' }], correct_commit_hash)).to eq(false)
+    end
+
     it 'bug_should_be_handled? return true for existing bug with not existing hash' do
       expect(executioner.bug_should_be_handled?(correct_bug_data, 'fake-hash')).to eq(true)
     end
