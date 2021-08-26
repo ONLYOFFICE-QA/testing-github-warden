@@ -16,6 +16,10 @@
 * Sort alphabetically list of repos in default config
 * Log any error which happened during bug handling
 
+### Fixes
+
+* Fix endless loop if commit contains non-existing bug number
+
 ## 0.1.3 (2019-02-20)
 
 ### Fixes

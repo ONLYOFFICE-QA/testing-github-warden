@@ -54,7 +54,7 @@ class Executioner
         if data.is_a?(Hash) && !data.empty?
           @logger.info "Current data #{data}"
           data.each do |hash, action_data|
-            next if bug_is_commented?(hash, action_data)
+            next unless bug_should_be_handled?(action_data, hash)
 
             action_data.each do |action|
               case action['action']
