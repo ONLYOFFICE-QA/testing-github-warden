@@ -52,6 +52,10 @@ module ExecutionerHelper
     end
   end
 
+  # Check if bug already was correctly commented
+  # @param commit_hash [String] commit hash string
+  # @param action_data [Hash] Github hook hash
+  # @return [Boolean]
   def bug_is_commented?(commit_hash, action_data)
     return true if action_data.select { |action| action['bug_id'] }.empty?
 
@@ -75,5 +79,29 @@ module ExecutionerHelper
       comment['text'].include? commit_hash
     end
     !result.empty?
+  end
+
+  # Check if any action with bug should be done at all
+  # @param action_data [Hash] Github hook hash
+  # @param commit_hash [String] commit hash string
+  # @return [Boolean]
+  def bug_should_be_handled?(action_data, commit_hash)
+    return false unless bug_exists?(action_data)
+    return false if bug_is_commented?(commit_hash, action_data)
+
+    true
+  end
+
+  # Check if bug exists at all
+  # @param action_data [Hash] Github hook hash
+  # @return [True, False]
+  def bug_exists?(action_data)
+    return true if action_data.select { |action| action['bug_id'] }.empty?
+
+    bug_id = action_data.find { |action| action['bug_id'] }['bug_id']
+
+    exists = @bugzilla.bug_exists?(bug_id)
+    @logger.info("Bug for data: #{action_data} do not exists. Someone probably make a typo.") unless exists
+    exists
   end
 end
