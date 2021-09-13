@@ -8,6 +8,7 @@
 * Add `rubocop` support
 * Add `dependabot` config
 * Add `.gitignore` file
+* Add `document-server-integration` repo
 
 ### Changes
 

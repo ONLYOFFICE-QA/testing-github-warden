@@ -9,6 +9,7 @@
                            'desktop-apps-ext',
                            'desktop-sdk',
                            'document-android-editors',
+                           'document-server-integration',
                            'documents-android',
                            'documents-app-android',
                            'documents-app-ios',
