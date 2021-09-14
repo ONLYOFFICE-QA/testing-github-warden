@@ -9,7 +9,7 @@ describe AllowedBranchesParser do
   it 'branch should be allowed if repo and branch found' do
     hash_data['ref'] = 'refs/heads/test_branch_first'
     commit_req = GithubResponceObjects.new(hash_data)
-    expect(incorrect_parser).to be_allowed_branch(commit_req)
+    expect(parser).to be_allowed_branch(commit_req)
   end
 
   it 'branch should not be allowed if no branch found' do
