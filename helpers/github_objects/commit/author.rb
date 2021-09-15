@@ -10,8 +10,8 @@ class Author
   attr_reader :username
 
   def initialize(params)
-    @name = params['author']['name']
-    @email = params['author']['email']
-    @username = params['author']['username']
+    @name = params['name']
+    @email = params['email']
+    @username = params['username']
   end
 end

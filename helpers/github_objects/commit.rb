@@ -16,6 +16,6 @@ class Commit
     @id = params['id']
     @message = params['message']
     @url = params['url']
-    @author = Author.new(params)
+    @author = Author.new(params['author'])
   end
 end
