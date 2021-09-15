@@ -1,7 +1,9 @@
 version: '2'
 services:
   warden:
-    build: .
+    build:
+      context: .
+      dockerfile: dockerfiles/warden/Dockerfile
     ports:
       - "3000:3000"
     volumes:
@@ -15,7 +17,7 @@ services:
   executioner:
     build:
       context: .
-      dockerfile: Executioner_Dockerfile
+      dockerfile: dockerfiles/executioner/Dockerfile
     tty: true
     volumes:
       - ./tmp/redis/:/testing-github-warden/tmp/redis/

@@ -22,6 +22,7 @@
 * Minor refactoring in `Repository` class
 * Add unit test for `Author`, `Commit`, `Repository` classes
 * Remove useless `Commit#timestamp` parsing
+* Refactor `Dockerfile`'s placement
 
 ### Fixes
 
