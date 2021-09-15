@@ -20,7 +20,8 @@
   New class `AllowedBranchesParser`
 * Remove unused `Repository#check_name` method
 * Minor refactoring in `Repository` class
-* Add unit test for `Author`, `Repository` classes
+* Add unit test for `Author`, `Commit`, `Repository` classes
+* Remove useless `Commit#timestamp` parsing
 
 ### Fixes
 
