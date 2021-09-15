@@ -20,8 +20,10 @@
   New class `AllowedBranchesParser`
 * Remove unused `Repository#check_name` method
 * Minor refactoring in `Repository` class
-* Add unit test for `Author`, `Commit`, `Repository` classes
+* Add unit test for `Author`, `Commit`, `GithubResponceObjects`
+  `Repository` classes
 * Remove useless `Commit#timestamp` parsing
+* Remove useless `GithubResponceObjects#compare` parsing
 * Refactor `Dockerfile`'s placement
 
 ### Fixes
