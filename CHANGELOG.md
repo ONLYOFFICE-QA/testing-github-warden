@@ -20,7 +20,7 @@
   New class `AllowedBranchesParser`
 * Remove unused `Repository#check_name` method
 * Minor refactoring in `Repository` class
-* Add unit test for `Repository` class
+* Add unit test for `Author`, `Repository` classes
 
 ### Fixes
 
