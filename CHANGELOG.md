@@ -18,6 +18,8 @@
 * Log any error which happened during bug handling
 * Major refactoring in handling `allowed_branches.yml`.
   New class `AllowedBranchesParser`
+* Remove unused `Repository#check_name` method
+* Minor refactoring in `Repository` class
 
 ### Fixes
 
