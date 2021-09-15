@@ -16,6 +16,8 @@
 * Use GitHub Actions instead of TravisCI
 * Sort alphabetically list of repos in default config
 * Log any error which happened during bug handling
+* Major refactoring in handling `allowed_branches.yml`.
+  New class `AllowedBranchesParser`
 
 ### Fixes
 
