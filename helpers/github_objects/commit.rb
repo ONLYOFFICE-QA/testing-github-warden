@@ -12,6 +12,7 @@ class Commit
   # @return [Author] author object of commit
   attr_reader :author
 
+  # @param params [Hash] data to parse
   def initialize(params)
     @id = params['id']
     @message = params['message']

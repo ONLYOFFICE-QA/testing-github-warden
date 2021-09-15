@@ -9,6 +9,7 @@ class Author
   # @return [String] username like on GitHub
   attr_reader :username
 
+  # @param params [Hash] data to parse
   def initialize(params)
     @name = params['name']
     @email = params['email']
