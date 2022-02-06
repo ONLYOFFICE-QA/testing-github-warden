@@ -74,9 +74,11 @@ module ExecutionerHelper
       sleep 15
     end
     result = comments.select do |comment|
-      comment['text'].include? commit_hash
+      comment['text'].include?(commit_hash)
     end
-    !result.empty?
+    commented = !result.empty?
+    @logger.info("Is bug #{bug_id} already has comment with commit_hash #{commit_hash}: #{commented}")
+    commented
   end
 
   # Check if any action with bug should be done at all

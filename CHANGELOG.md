@@ -25,6 +25,7 @@
 * Remove useless `Commit#timestamp` parsing
 * Remove useless `GithubResponceObjects#compare` parsing
 * Refactor `Dockerfile`'s placement
+* Add more detailed log for checking is bug already commented
 
 ### Fixes
 
