@@ -29,6 +29,7 @@
 ### Fixes
 
 * Fix endless loop if commit contains non-existing bug number
+* Fix outdated version of `nodejs` in CI checks
 
 ## 0.1.3 (2019-02-20)
 
