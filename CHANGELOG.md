@@ -9,6 +9,7 @@
 * Add `dependabot` config
 * Add `.gitignore` file
 * Add `document-server-integration` repo
+* Add `yamllint` check in CI
 
 ### Changes
 
