@@ -10,29 +10,29 @@ describe Executioner do
 
   describe 'bug_is_commented?' do
     it 'bug_is_commented? return true for commented bug' do
-      expect(executioner.bug_is_commented?(correct_commit_hash, correct_bug_data)).to eq(true)
+      expect(executioner.bug_is_commented?(correct_commit_hash, correct_bug_data)).to be(true)
     end
 
     it 'bug_is_commented? return false for non-existing bug' do
-      expect(executioner.bug_is_commented?(correct_commit_hash, incorrect_bug_data)).to eq(false)
+      expect(executioner.bug_is_commented?(correct_commit_hash, incorrect_bug_data)).to be(false)
     end
   end
 
   describe 'bug_should_be_handled?' do
     it 'bug_should_be_handled return false if no bug data hook data' do
-      expect(executioner.bug_should_be_handled?([{ a: 'b' }], correct_commit_hash)).to eq(false)
+      expect(executioner.bug_should_be_handled?([{ a: 'b' }], correct_commit_hash)).to be(false)
     end
 
     it 'bug_should_be_handled? return true for existing bug with not existing hash' do
-      expect(executioner.bug_should_be_handled?(correct_bug_data, 'fake-hash')).to eq(true)
+      expect(executioner.bug_should_be_handled?(correct_bug_data, 'fake-hash')).to be(true)
     end
 
     it 'bug_should_be_handled? return false for existing bug with correct fix hash' do
-      expect(executioner.bug_should_be_handled?(correct_bug_data, correct_commit_hash)).to eq(false)
+      expect(executioner.bug_should_be_handled?(correct_bug_data, correct_commit_hash)).to be(false)
     end
 
     it 'bug_should_be_handled return false for non-existing bug' do
-      expect(executioner.bug_should_be_handled?(incorrect_bug_data, correct_commit_hash)).to eq(false)
+      expect(executioner.bug_should_be_handled?(incorrect_bug_data, correct_commit_hash)).to be(false)
     end
   end
 end
