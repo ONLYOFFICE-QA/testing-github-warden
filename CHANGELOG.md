@@ -30,6 +30,7 @@
 * Add more detailed log for checking is bug already commented
 * Check `dependabot` at 8:00 Moscow time daily
 * Changes from `rubocop-rspec` update to 2.9.0
+* Use `alpine` as base image for executioner
 
 ### Fixes
 
