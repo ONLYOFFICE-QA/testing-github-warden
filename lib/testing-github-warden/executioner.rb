@@ -21,18 +21,12 @@ class Executioner
   # Perform diagnostic of Executioner
   # @return [void]
   def diagnostic
-    bugzilla_key_exist = !ENV['BUGZILLA_API_KEY'].nil? && ENV['BUGZILLA_API_KEY'] != ''
-    redis_is_work = false
-    begin
-      @redis.lpush 'test_list', 'test_note'
-      redis_is_work = @redis.lpop('test_list') == 'test_note'
-    rescue StandardError
-      redis_is_work = false
-    end
-    all_right = bugzilla_key_exist && redis_is_work
+    bugzilla_key_exist = check_bugzilla_key?
+    working_redis = check_redis?
+    all_services_ok = bugzilla_key_exist && working_redis
     @logger.info "bugzilla key exist: #{bugzilla_key_exist}"
-    @logger.info "redis is working: #{redis_is_work}"
-    raise('Diagnostic error! See logs') unless all_right
+    @logger.info "redis is working: #{working_redis}"
+    raise('Diagnostic error! See logs') unless all_services_ok
 
     puts "████████████████████████████████
 █─███─█────█────█────██───█─██─█
@@ -82,5 +76,28 @@ class Executioner
         @redis.lpush 'github_warden_action', data.to_json
       end
     end
+  end
+
+  private
+
+  # Check if bugzilla key correctly exists
+  # @return [Boolean] result of check
+  def check_bugzilla_key?
+    return false unless ENV['BUGZILLA_API_KEY']
+    return false if ENV['BUGZILLA_API_KEY'].empty?
+
+    true
+  end
+
+  # Check if redis correctly setup
+  # @return [Boolean] result of check
+  def check_redis?
+    queue = 'test_list'
+    message = 'test_note'
+    @redis.lpush(queue, message)
+    @redis.lpop(queue) == message
+  rescue StandardError => e
+    @logger.info("Redis is not working because of: `#{e}`")
+    false
   end
 end
