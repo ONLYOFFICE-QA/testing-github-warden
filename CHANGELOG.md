@@ -10,6 +10,7 @@
 * Add `.gitignore` file
 * Add `document-server-integration` repo
 * Add `yamllint` check in CI
+* Add dependabot check for base docker image updates
 
 ### Changes
 
