@@ -29,6 +29,6 @@ class Http
   end
 
   def generate_signature(params)
-    "sha1=#{OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), ENV['SECRET_TOKEN'], params.to_json)}"
+    "sha1=#{OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), ENV.fetch('SECRET_TOKEN', ''), params.to_json)}"
   end
 end

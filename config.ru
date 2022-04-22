@@ -12,5 +12,5 @@ configure do
   enable :static
   enable :dump_errors
   set :show_exceptions, false # uncomment for testing or production
-  set :environment, ENV['RACK_ENV']
+  set :environment, ENV.fetch('RACK_ENV', 'unknown')
 end
