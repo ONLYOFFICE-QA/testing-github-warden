@@ -32,6 +32,7 @@
 * Changes from `rubocop-rspec` update to 2.9.0
 * Use `alpine` as base image for executioner
 * Minor refactoring in diagnostics
+* Fix `rubocop-1.28.1` code issues
 
 ### Fixes
 
