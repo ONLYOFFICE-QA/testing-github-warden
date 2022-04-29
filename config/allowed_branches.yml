@@ -17,6 +17,7 @@
                            'mobile-apps',
                            'projects-mobile',
                            'sdkjs',
+                           'sdkjs-forms',
                            'sdkjs-pivot-tables',
                            'sdkjs-sheet-views',
                            'server',
