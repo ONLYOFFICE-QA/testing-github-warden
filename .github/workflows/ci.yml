@@ -8,10 +8,10 @@ jobs:
       SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
     steps:
       - uses: actions/checkout@v2
-      - name: Set up Ruby 2.7
+      - name: Set up Ruby 3.1
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 2.7
+          ruby-version: 3.1
       - name: Start services in docker-compose
         run: docker-compose up -d
       - name: Install bundler dependencies

@@ -5,7 +5,7 @@ class StaticData
   extend AbstractRequest
   ADDRESS = '0.0.0.0'
   PORT = 3000
-  MAINPAGE = "http://#{ADDRESS}:#{PORT}"
+  MAINPAGE = "http://#{ADDRESS}:#{PORT}".freeze
   SECRET_TOKEN = '12345'
   WRONG_HTTP_X_HUB_SIGNATURE = 'sha1=wrong_key'
   BUG_ID_TEST = '39463'
