@@ -4,11 +4,11 @@ require 'spec_helper'
 
 describe RequestToken do
   let(:github_request) do
-    instance_double(Request,
+    instance_double(Sinatra::Request,
                     env: { 'HTTP_X_HUB_SIGNATURE' => 'sha1=123456' },
-                    body: instance_double(Body, read: 'Test'))
+                    body: instance_double(StringIO, read: 'Test'))
   end
-  let(:gitlab_request) { instance_double(Request, env: { 'HTTP_X_GITLAB_TOKEN' => '123456' }) }
+  let(:gitlab_request) { instance_double(Sinatra::Request, env: { 'HTTP_X_GITLAB_TOKEN' => '123456' }) }
 
   describe 'RequestToken for Github' do
     let(:request_token) { described_class.new(github_request) }
