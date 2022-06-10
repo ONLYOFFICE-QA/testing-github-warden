@@ -59,8 +59,8 @@ class App < Sinatra::Base
   # @param [Sinatra::Request] request to get token from
   # @return [String, nil] token or nil if no token found
   def request_token(request)
-    return request.env['HTTP_X_HUB_SIGNATURE'] if request.env.has_key?['HTTP_X_HUB_SIGNATURE']
-    return request.env['HTTP_X_GITLAB_TOKEN'] if request.env.has_key?['HTTP_X_GITLAB_TOKEN']
+    return request.env['HTTP_X_HUB_SIGNATURE'] if request.env.key?('HTTP_X_HUB_SIGNATURE')
+    return request.env['HTTP_X_GITLAB_TOKEN'] if request.env.key?('HTTP_X_GITLAB_TOKEN')
 
     nil
   end
