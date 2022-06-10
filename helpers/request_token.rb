@@ -14,8 +14,6 @@ class RequestToken
                      :github
                    elsif @request.env.key?('HTTP_X_GITLAB_TOKEN')
                      :gitlab
-                   else
-                     :unknown
                    end
 
     @sender_type
