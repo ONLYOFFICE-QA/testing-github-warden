@@ -12,15 +12,15 @@ class Http
     @http = Net::HTTP.new(options[:address], options[:port])
   end
 
-  def post_request(params: nil, headers: {}, no_headers: false)
+  def post_request(params: nil, headers: {}, generate_signature: true)
     request = Net::HTTP::Post.new('/')
 
-    unless no_headers
+    if generate_signature
       signature = generate_signature(params)
       headers['X_HUB_SIGNATURE'] ||= signature
-      headers.each_pair do |header_name, value|
-        request[header_name] = value
-      end
+    end
+    headers.each_pair do |header_name, value|
+      request[header_name] = value
     end
     request.body = params.to_json if params
     responce = @http.request(request)
