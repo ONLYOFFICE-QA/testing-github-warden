@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'helpers/request_token'
 require_relative 'management'
 class App < Sinatra::Base
   helpers Sinatra::CustomLogger
@@ -34,8 +35,7 @@ class App < Sinatra::Base
 
   post '/' do
     request.body.rewind
-    payload_body = request.body.read
-    verify_signature(payload_body)
+    verify_signature
     if @object.commits
       result = find_action(@object)
       @redis.lpush 'github_warden_action', result.to_json
@@ -46,10 +46,10 @@ class App < Sinatra::Base
     end
   end
 
-  def verify_signature(payload_body)
-    halt 500, { errors: ['No HTTP_X_HUB_SIGNATURE'] }.to_json unless request.env['HTTP_X_HUB_SIGNATURE']
+  def verify_signature
+    token = RequestToken.new(request)
+    halt 500, { errors: ['No HTTP_X_HUB_SIGNATURE or HTTP_X_GITLAB_TOKEN'] }.to_json unless token.sender_type
     halt 500, { errors: ['No SECRET_TOKEN'] }.to_json unless ENV['SECRET_TOKEN']
-    signature = "sha1=#{OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), ENV.fetch('SECRET_TOKEN', ''), payload_body)}"
-    halt 500, { errors: ['Wrong signatures'] }.to_json unless Rack::Utils.secure_compare(signature, request.env['HTTP_X_HUB_SIGNATURE'])
+    halt 500, { errors: ['Wrong signatures'] }.to_json unless Rack::Utils.secure_compare(token.warden_signature, token.request_signature)
   end
 end
