@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
+require_relative 'helpers/hook_detection'
 require_relative 'helpers/request_token'
 require_relative 'management'
 class App < Sinatra::Base
   helpers Sinatra::CustomLogger
-  include HookDirection
   attr_accessor :params
 
   def initialize
@@ -37,7 +37,7 @@ class App < Sinatra::Base
     request.body.rewind
     verify_signature
     if @object.commits
-      result = find_action(@object)
+      result = HookDetection.new(@object).find_action
       @redis.lpush 'github_warden_action', result.to_json
       logger.info "-> New result: #{result.to_json}"
       result.to_json

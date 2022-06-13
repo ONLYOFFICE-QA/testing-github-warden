@@ -34,6 +34,7 @@
 * Use `alpine` as base image for executioner
 * Minor refactoring in diagnostics
 * Fix `rubocop-1.28.1` code issues
+* Increase unit-test coverage
 
 ### Fixes
 
