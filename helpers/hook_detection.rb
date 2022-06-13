@@ -2,8 +2,9 @@
 
 # Clas for detecting hooks
 class HookDetection
-  def initialize(object)
+  def initialize(object, allowed_branch_parser = AllowedBranchesParser.new)
     @object = object
+    @allowed_branch_parser = allowed_branch_parser
   end
 
   # Find action for object

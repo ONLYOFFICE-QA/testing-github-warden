@@ -9,7 +9,6 @@ class App < Sinatra::Base
 
   def initialize
     @version = '0.1.3'
-    @allowed_branch_parser = AllowedBranchesParser.new
     super
   end
 
