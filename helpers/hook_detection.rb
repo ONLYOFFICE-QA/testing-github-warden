@@ -1,18 +1,25 @@
 # frozen_string_literal: true
 
-module HookDirection
-  def find_action(object)
+# Clas for detecting hooks
+class HookDetection
+  def initialize(object, allowed_branch_parser = AllowedBranchesParser.new)
+    @object = object
+    @allowed_branch_parser = allowed_branch_parser
+  end
+
+  # Find action for object
+  def find_action
     # result has structure: {commit_id: [{commit_message: string, bug_id: number, }], commit_id: ...}
     result = {}
     YAML.load_file('config/warden_config.yml').each do |current_pattern|
-      object.commits.reverse_each do |commit|
+      @object.commits.reverse_each do |commit|
         next unless /#{current_pattern[:commit_message_pattern]}/.match?(commit.message.downcase)
-        next unless @allowed_branch_parser.allowed_branch?(object)
+        next unless @allowed_branch_parser.allowed_branch?(@object)
 
         bug_id = commit.message.downcase[/bug\s+#?(\d+)/].to_s[/\d+/]
         result[commit.id] = [] unless result[commit.id]
         result[commit.id] << { commit_message: commit.message,
-                               comment: create_full_comment(commit, object.branch),
+                               comment: create_full_comment(commit, @object.branch),
                                bug_id:,
                                action: current_pattern[:action] }
       end
