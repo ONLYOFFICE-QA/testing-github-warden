@@ -47,6 +47,10 @@ Examples for changing status and commented:
 Examples for only comments:
 "For Bug #123456", "This text have no matter bUG 123456"
 
+**WARNING** You can only close one bug via single commit.
+Until [#82](https://github.com/ONLYOFFICE-QA/testing-github-warden/issues/82)
+is resolved
+
 ## Adding new event
 
 Config for new pattern: `config/warden_config.yml`
