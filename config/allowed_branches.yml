@@ -31,3 +31,8 @@
                            'ControlPanel_Private',
                            'portals']
   :branch_pattern: 'master|hotfix|release'
+# For AVS projects
+-
+  :repository_name_array: ['activex',
+                           'app-main']
+  :branch_pattern: 'develop'
