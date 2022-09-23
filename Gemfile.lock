@@ -26,7 +26,7 @@ GEM
     rainbow (3.1.1)
     redis (5.0.4)
       redis-client (>= 0.7.4)
-    redis-client (0.8.1)
+    redis-client (0.9.0)
       connection_pool
     regexp_parser (2.5.0)
     rexml (3.2.5)
