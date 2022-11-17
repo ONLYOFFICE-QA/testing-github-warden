@@ -29,6 +29,7 @@
 -
   :repository_name_array: ['ControlPanel',
                            'ControlPanel_Private',
+                           'onlyoffice.github.io'
                            'portals']
   :branch_pattern: 'master|hotfix|release'
 # For AVS projects
