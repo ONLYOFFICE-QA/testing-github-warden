@@ -108,7 +108,7 @@ module ExecutionerHelper
   # @param action_data [Array<Hash>] Github hook hash
   # @return [Boolean]
   def hook_data_include_bug_number?(action_data)
-    include = !action_data.select { |action| action['bug_id'] }.empty?
+    include = action_data.any? { |action| action['bug_id'] }
 
     @logger.info("Github hook data: #{action_data} do not contains any bug_id. Skipping") unless include
 
