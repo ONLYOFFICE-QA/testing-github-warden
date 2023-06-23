@@ -8,6 +8,7 @@
                            'desktop-apps',
                            'desktop-apps-ext',
                            'desktop-sdk',
+                           'DocSpace',
                            'document-android-editors',
                            'document-server-integration',
                            'documents-android',
