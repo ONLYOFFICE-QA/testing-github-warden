@@ -12,13 +12,15 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: 3.1
-      - name: Start services in docker-compose
-        run: docker-compose up -d
       - name: Install bundler dependencies
         run: |
           gem install bundler
           bundle install --jobs 4 --retry 3
       - name: Check source files using `rubocop`
         run: rubocop
-      - name: run tests
-        run: bundle exec rspec spec/tests --fail-fast
+      - name: run unit tests
+        run: bundle exec rspec spec/unit --fail-fast
+      - name: Start services in docker-compose
+        run: docker-compose up -d
+      - name: run integration tests
+        run: bundle exec rspec spec/integration --fail-fast
