@@ -44,7 +44,10 @@ describe 'Commit smoke' do
       responce_commit = responce.body[commit_req['commits'][0]['id']]
       expect(responce_commit.first['commit_message']).to eq(commit_req['commits'][0]['message'])
       expect(responce_commit.first['action']).to eq('add_comment')
-      expect(responce_commit.first['comment']).to eq("Commit pushed to refs/heads/test_branch_first\n#{commit}\n#{message}\nAuthor: #{commit_req['commits'][0]['author']['name']}")
+      comment = "Commit pushed to refs/heads/test_branch_first\n" \
+                "#{commit}\n#{message}\n" \
+                "Author: #{commit_req['commits'][0]['author']['name']}"
+      expect(responce_commit.first['comment']).to eq(comment)
     end
 
     it 'check add_resolved_fixed and add_comment actions' do
