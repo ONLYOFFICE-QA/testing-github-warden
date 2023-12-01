@@ -13,6 +13,7 @@
 * Add dependabot check for base docker image updates
 * Add support for GitLab's `HTTP_X_GITLAB_TOKEN` header
 * Add config for AVS repos
+* Add support for `simplecov` test coverage reports
 
 ### Changes
 
