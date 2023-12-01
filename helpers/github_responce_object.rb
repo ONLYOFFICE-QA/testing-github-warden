@@ -15,6 +15,7 @@ class GithubResponceObjects
   def initialize(params)
     @repository = Repository.new(params['repository'])
     @branch = params['ref'] if params['ref']
+    @commits = []
     @commits = params['commits'].map { |commit| Commit.new(commit) } if params['commits']
   end
 end
