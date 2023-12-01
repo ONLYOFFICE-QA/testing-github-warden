@@ -51,13 +51,14 @@ class App < Sinatra::Base
     token = RequestToken.new(request)
     halt 500, { errors: ['No HTTP_X_HUB_SIGNATURE or HTTP_X_GITLAB_TOKEN'] }.to_json unless token.sender_type
     halt 500, { errors: ['No SECRET_TOKEN'] }.to_json unless ENV['SECRET_TOKEN']
-    halt 500, { errors: ['Wrong signatures'] }.to_json unless signatures_are_correct
+    halt 500, { errors: ['Wrong signatures'] }.to_json unless signatures_are_correct(token)
   end
 
   private
 
+  # @param [RequestToken] token to check
   # @return [Boolean] is request compare is correct
-  def signatures_are_correct
+  def signatures_are_correct(token)
     Rack::Utils.secure_compare(token.warden_signature,
                                token.request_signature)
   end
