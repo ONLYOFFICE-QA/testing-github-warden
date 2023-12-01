@@ -9,15 +9,33 @@ describe GithubResponceObjects do
     expect(github_object.repository).to be_a(Repository)
   end
 
-  it 'github_object.branch should return branch name' do
-    expect(github_object.branch).to eq('refs/heads/develop')
+  describe 'branch' do
+    it 'github_object.branch should return branch name' do
+      expect(github_object.branch).to eq('refs/heads/develop')
+    end
+
+    it 'github_object.branch should return nil if branch not specified' do
+      commit = Fixtures.commit
+      commit['ref'] = nil
+      github_object = described_class.new(commit)
+      expect(github_object.branch).to be_nil
+    end
   end
 
-  it 'github_object.commits should be an array' do
-    expect(github_object.commits).to be_a(Array)
-  end
+  describe 'commits' do
+    it 'github_object.commits should be an array' do
+      expect(github_object.commits).to be_a(Array)
+    end
 
-  it 'github_object.commits elements should be Commit' do
-    expect(github_object.commits[0]).to be_a(Commit)
+    it 'github_object.commits elements should be Commit' do
+      expect(github_object.commits[0]).to be_a(Commit)
+    end
+
+    it 'github_object.commits should be empty if no commits' do
+      commit = Fixtures.commit
+      commit['commits'] = nil
+      github_object = described_class.new(commit)
+      expect(github_object.commits).to be_nil
+    end
   end
 end
