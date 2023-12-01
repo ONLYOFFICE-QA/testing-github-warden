@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Commit do
-  let(:commit) { described_class.new(StaticData.commit['commits'].first) }
+  let(:commit) { described_class.new(Fixtures.commit['commits'].first) }
 
   it 'commit.id should return id' do
     expect(commit.id).to eq('f2534cd63426e12f4668e55fead612cd53e632e4')

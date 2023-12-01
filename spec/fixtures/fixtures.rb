@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
-require_relative '../../spec/data/abstract_request'
-class StaticData
-  extend AbstractRequest
+require_relative 'fixtures_responce_objects'
+
+# Class for storing fixtures
+class Fixtures
+  extend FixturesResponceObjects
   ADDRESS = '0.0.0.0'
   PORT = 3000
   SECRET_TOKEN = '12345'

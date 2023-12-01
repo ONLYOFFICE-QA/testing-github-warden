@@ -19,7 +19,7 @@ describe Executioner do
   end
 
   describe 'bug_should_be_handled?' do
-    it 'bug_should_be_handled return false if no bug data hook data' do
+    it 'bug_should_be_handled return false if no bug fixtures hook fixtures' do
       expect(executioner.bug_should_be_handled?([{ a: 'b' }], correct_commit_hash)).to be(false)
     end
 

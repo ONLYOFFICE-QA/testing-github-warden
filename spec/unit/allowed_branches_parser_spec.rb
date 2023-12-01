@@ -4,7 +4,7 @@ require 'spec_helper'
 
 describe AllowedBranchesParser do
   let(:parser) { described_class.new }
-  let(:hash_data) { StaticData.commit }
+  let(:hash_data) { Fixtures.commit }
 
   it 'branch should be allowed if repo and branch found' do
     hash_data['ref'] = 'refs/heads/test_branch_first'
