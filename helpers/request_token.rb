@@ -29,12 +29,18 @@ class RequestToken
 
   # @return [String] signature of request
   def warden_signature
-    if sender_type == :github
-      return "sha1=#{OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'),
-                                             ENV.fetch('SECRET_TOKEN', ''),
-                                             @request.body.read)}"
-    end
+    return "sha1=#{calculate_checksum}" if sender_type == :github
 
     ENV.fetch('SECRET_TOKEN', '')
+  end
+
+  private
+
+  # Calculate checksum for request
+  # @return [String] checksum
+  def calculate_checksum
+    OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'),
+                            ENV.fetch('SECRET_TOKEN', ''),
+                            @request.body.read)
   end
 end
