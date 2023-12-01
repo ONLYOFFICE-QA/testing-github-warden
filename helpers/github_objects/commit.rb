@@ -3,6 +3,10 @@
 require_relative 'commit/author'
 # Class for describing commit information
 class Commit
+  # @return [Regexp] regexp for bug id with `bug` word including
+  BUG_ID_REGEXP = /bug\s+#?(\d+)/
+  # @return [Regexp] regexp for only finding digits
+  DIGITS_REGEXP = /\d+/
   # @return [String] id of commit
   attr_reader :id
   # @return [String] message of commit
@@ -18,5 +22,11 @@ class Commit
     @message = params['message']
     @url = params['url']
     @author = Author.new(params['author'])
+  end
+
+  # Get bug id from commit message
+  # @return [String, nil] bug id
+  def bug_id
+    @message.downcase[BUG_ID_REGEXP].to_s[DIGITS_REGEXP]
   end
 end
