@@ -36,15 +36,7 @@ Metrics/PerceivedComplexity:
 # Configuration parameters: IgnoredMetadata.
 RSpec/DescribeClass:
   Exclude:
-    - '**/spec/features/**/*'
-    - '**/spec/requests/**/*'
-    - '**/spec/routing/**/*'
-    - '**/spec/system/**/*'
-    - '**/spec/views/**/*'
-    - 'spec/tests/allowed_branch_spec.rb'
-    - 'spec/tests/commit_integration_spec.rb'
-    - 'spec/tests/commit_messages_spec.rb'
-    - 'spec/tests/secure_spec.rb'
+    - 'spec/integration/**/*'
 
 # Offense count: 11
 # Configuration parameters: CountAsOne.
@@ -58,7 +50,7 @@ RSpec/MultipleExpectations:
 # Offense count: 2
 RSpec/RepeatedExample:
   Exclude:
-    - 'spec/tests/allowed_branch_spec.rb'
+    - 'spec/integration/allowed_branch_spec.rb'
 
 # Offense count: 1
 # Configuration parameters: AllowedConstants.
