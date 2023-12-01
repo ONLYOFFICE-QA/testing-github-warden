@@ -4,11 +4,15 @@ require 'net/http'
 require 'spec_helper'
 
 class Http
+  # @return [String] default address for http server
+  DEFAULT_ADDRESS = '0.0.0.0'
+  # @return [Integer] default port for http server
+  DEFAULT_PORT = 3000
   attr_accessor :http
 
   def initialize(options = {})
-    options[:address] ||= Fixtures::ADDRESS
-    options[:port] ||= Fixtures::PORT
+    options[:address] ||= DEFAULT_ADDRESS
+    options[:port] ||= DEFAULT_PORT
     @http = Net::HTTP.new(options[:address], options[:port])
   end
 
