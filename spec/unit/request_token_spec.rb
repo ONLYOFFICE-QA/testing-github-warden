@@ -41,4 +41,20 @@ describe RequestToken do
       expect(request_token.warden_signature).not_to start_with('sha1=')
     end
   end
+
+  describe 'RequestToken for unknown sender' do
+    let(:request_token) { described_class.new(instance_double(Sinatra::Request, env: {})) }
+
+    it 'sender_type should return nil' do
+      expect(request_token.sender_type).to be_nil
+    end
+
+    it 'request_signature should return nil' do
+      expect(request_token.request_signature).to be_nil
+    end
+
+    it 'warden_signature should start with sha1' do
+      expect(request_token.warden_signature).not_to start_with('sha1=')
+    end
+  end
 end
