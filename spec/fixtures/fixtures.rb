@@ -1,14 +1,24 @@
 # frozen_string_literal: true
 
-require_relative 'fixtures_responce_objects'
+require 'json'
 
 # Class for storing fixtures
 class Fixtures
-  extend FixturesResponceObjects
-  ADDRESS = '0.0.0.0'
-  PORT = 3000
-  SECRET_TOKEN = '12345'
-  WRONG_HTTP_X_HUB_SIGNATURE = 'sha1=wrong_key'
+  def commit
+    file = File.read(File.join(File.dirname(__FILE__), './fixtures_responce_objects/commit.json'))
+    JSON.parse(file)
+  end
+
+  def ping
+    file = File.read(File.join(File.dirname(__FILE__), './fixtures_responce_objects/ping.json'))
+    JSON.parse(file)
+  end
+
+  def repo_match_commit
+    file = File.read(File.join(File.dirname(__FILE__), './fixtures_responce_objects/repo_match_commit.json'))
+    JSON.parse(file)
+  end
+
   BUG_ID_TEST = '39463'
 
   CHANGE_STATUS_AND_COMMENT = ["[se] Fix bug #{BUG_ID_TEST}",

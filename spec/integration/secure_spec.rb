@@ -22,7 +22,7 @@ describe 'Secure smoke' do
 
     it 'Secure | wrong signature for GitHub' do
       responce = http.post_request(params: Fixtures.commit,
-                                   headers: { 'X_HUB_SIGNATURE' => Fixtures::WRONG_HTTP_X_HUB_SIGNATURE },
+                                   headers: { 'X_HUB_SIGNATURE' => 'sha1=wrong_key' },
                                    generate_signature: false)
       expect(responce.body['errors'].size).to eq(1)
       expect(responce.body['errors'][0]).to eq('Wrong signatures')
@@ -30,7 +30,7 @@ describe 'Secure smoke' do
 
     it 'Secure | wrong signature for GitLab' do
       responce = http.post_request(params: Fixtures.commit,
-                                   headers: { 'X_GITLAB_TOKEN' => Fixtures::WRONG_HTTP_X_HUB_SIGNATURE },
+                                   headers: { 'X_GITLAB_TOKEN' => 'sha1=wrong_key' },
                                    generate_signature: false)
       expect(responce.body['errors'].size).to eq(1)
       expect(responce.body['errors'][0]).to eq('Wrong signatures')
