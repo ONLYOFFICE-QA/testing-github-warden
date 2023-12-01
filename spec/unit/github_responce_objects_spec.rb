@@ -35,7 +35,7 @@ describe GithubResponceObjects do
       commit = Fixtures.commit
       commit['commits'] = nil
       github_object = described_class.new(commit)
-      expect(github_object.commits).to be_empty
+      expect(github_object.commits).to be_nil
     end
   end
 end
