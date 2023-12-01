@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Author do
-  let(:author) { described_class.new(StaticData.commit['commits'].first['author']) }
+  let(:author) { described_class.new(Fixtures.commit['commits'].first['author']) }
 
   it 'author.name should return name' do
     expect(author.name).to eq('Dmitriy Rotatyy')

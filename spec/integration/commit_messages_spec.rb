@@ -9,9 +9,9 @@ describe 'Commit smoke' do
   end
 
   describe 'status change' do
-    StaticData::CHANGE_STATUS_AND_COMMENT.each do |commit_message|
+    Fixtures::CHANGE_STATUS_AND_COMMENT.each do |commit_message|
       it "check '#{commit_message}' message for add status and comment" do
-        commit_req = StaticData.commit
+        commit_req = Fixtures.commit
         commit_req['commits'][0]['message'] = commit_message
         commit_req['ref'] = 'refs/heads/test_branch_first'
         commit_req['html_url'] = 'https://githubb-fake-rebo/test'
@@ -20,7 +20,7 @@ describe 'Commit smoke' do
         responce_commit = responce.body[commit_req['commits'][0]['id']]
         result = responce_commit.find do |element|
           element['commit_message'] == commit_message &&
-            element['bug_id'] == StaticData::BUG_ID_TEST &&
+            element['bug_id'] == Fixtures::BUG_ID_TEST &&
             element['action'] == 'add_resolved_fixed'
         end
         expect(result).not_to be_empty
@@ -29,9 +29,9 @@ describe 'Commit smoke' do
   end
 
   describe 'status not change' do
-    StaticData::COMMENT_ONLY.each do |commit_message|
+    Fixtures::COMMENT_ONLY.each do |commit_message|
       it "check '#{commit_message}' message for add status and comment" do
-        commit_req = StaticData.commit
+        commit_req = Fixtures.commit
         commit_req['commits'][0]['message'] = commit_message
         commit_req['ref'] = 'refs/heads/test_branch_first'
         commit_req['html_url'] = 'https://githubb-fake-rebo/test'
@@ -40,7 +40,7 @@ describe 'Commit smoke' do
         responce_commit = responce.body[commit_req['commits'][0]['id']]
         result = responce_commit.find do |element|
           element['commit_message'] == commit_message &&
-            element['bug_id'] == StaticData::BUG_ID_TEST &&
+            element['bug_id'] == Fixtures::BUG_ID_TEST &&
             element['action'] == 'add_comment'
         end
         expect(result).not_to be_empty
@@ -49,9 +49,9 @@ describe 'Commit smoke' do
   end
 
   describe 'do nothing' do
-    StaticData::DO_NOTHING.each do |commit_message|
+    Fixtures::DO_NOTHING.each do |commit_message|
       it "check '#{commit_message}' message for do nothing" do
-        commit_req = StaticData.commit
+        commit_req = Fixtures.commit
         commit_req['commits'][0]['message'] = commit_message
         commit_req['html_url'] = "https://githubb-fake-rebo/#{Faker::Games::Dota.hero}"
         commit_req['commits'][0]['author']['name'] = Faker::Movies::StarWars.character

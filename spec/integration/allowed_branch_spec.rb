@@ -10,7 +10,7 @@ describe 'Allowed branch smoke' do
 
   describe 'Allowed branch' do
     it 'check status is changed if repo name is not found' do
-      commit_req = StaticData.commit
+      commit_req = Fixtures.commit
       commit_req['ref'] = 'refs/heads/branch_name'
       commit_req['commits'][0]['message'] = 'Fix bug 39463'
       commit_req['repository']['name'] = Faker::Movies::StarWars.planet
@@ -20,7 +20,7 @@ describe 'Allowed branch smoke' do
     end
 
     it 'check status is not changed if repo name is found' do
-      commit_req = StaticData.commit
+      commit_req = Fixtures.commit
       commit_req['ref'] = 'refs/heads/branch_name'
       commit_req['commits'][0]['message'] = 'Fix bug 39463'
       commit_req['repository']['name'] = Faker::Movies::StarWars.planet
@@ -30,7 +30,7 @@ describe 'Allowed branch smoke' do
     end
 
     it 'check status is changed if branch name is found, but repo name is not found' do
-      commit_req = StaticData.commit
+      commit_req = Fixtures.commit
       commit_req['ref'] = 'refs/heads/test_branch_first'
       commit_req['commits'][0]['message'] = 'Fix bug 39463'
       commit_req['repository']['name'] = Faker::Movies::StarWars.planet
@@ -40,7 +40,7 @@ describe 'Allowed branch smoke' do
     end
 
     it 'check status is changed if repo name and branch name is found' do
-      commit_req = StaticData.commit
+      commit_req = Fixtures.commit
       commit_req['ref'] = 'refs/heads/test_branch_first'
       commit_req['commits'][0]['message'] = 'Fix bug 39463'
       commit_req['repository']['name'] = 'test'
@@ -53,7 +53,7 @@ describe 'Allowed branch smoke' do
   end
 
   it 'only repo name matched' do
-    commit_req = StaticData.repo_match_commit
+    commit_req = Fixtures.repo_match_commit
     commit_req['repository']['name'] = 'test'
     commit_req['commits'][0]['message'] = 'Fix bug 39463'
     commit_req['commits'][0]['author']['name'] = Faker::Movies::StarWars.character

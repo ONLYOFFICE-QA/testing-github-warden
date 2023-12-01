@@ -7,8 +7,8 @@ class Http
   attr_accessor :http
 
   def initialize(options = {})
-    options[:address] ||= StaticData::ADDRESS
-    options[:port] ||= StaticData::PORT
+    options[:address] ||= Fixtures::ADDRESS
+    options[:port] ||= Fixtures::PORT
     @http = Net::HTTP.new(options[:address], options[:port])
   end
 

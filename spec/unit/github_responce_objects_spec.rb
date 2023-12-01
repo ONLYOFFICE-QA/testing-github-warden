@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe GithubResponceObjects do
-  let(:github_object) { described_class.new(StaticData.commit) }
+  let(:github_object) { described_class.new(Fixtures.commit) }
 
   it 'github_object.repository should return repository object' do
     expect(github_object.repository).to be_a(Repository)

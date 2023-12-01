@@ -10,12 +10,12 @@ describe 'Commit smoke' do
 
   describe 'One commit smoke' do
     it 'one commit | do nothing' do
-      responce = http.post_request(params: StaticData.commit)
+      responce = http.post_request(params: Fixtures.commit)
       expect(responce.body).to be_empty
     end
 
     it 'one commit | only repository match' do
-      commit_req = StaticData.commit
+      commit_req = Fixtures.commit
       commit_req['repository']['name'] = 'test'
       commit_req['ref'] = 'refs/heads/test_branch_first'
       responce = http.post_request(params: commit_req)
@@ -23,7 +23,7 @@ describe 'Commit smoke' do
     end
 
     it 'one commit | test_action' do
-      commit_req = StaticData.commit
+      commit_req = Fixtures.commit
       commit_req['repository']['name'] = 'test'
       commit_req['ref'] = 'refs/heads/test_branch_first'
       commit_req['commits'][0]['message'] = 'test_commit_message'
@@ -34,7 +34,7 @@ describe 'Commit smoke' do
 
   describe 'Actions' do
     it 'check add_comment action' do
-      commit_req = StaticData.commit
+      commit_req = Fixtures.commit
       commit_req['repository']['name'] = 'test'
       commit_req['ref'] = 'refs/heads/test_branch_first'
       commit_req['commits'][0]['message'] = 'bug 39463'
@@ -51,7 +51,7 @@ describe 'Commit smoke' do
     end
 
     it 'check add_resolved_fixed and add_comment actions' do
-      commit_req = StaticData.commit
+      commit_req = Fixtures.commit
       commit_req['ref'] = 'refs/heads/test_branch_first'
       commit_req['html_url'] = 'https://githubb-fake-rebo/test'
       commit_req['commits'][0]['message'] = 'Fix bug 39463'
