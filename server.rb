@@ -3,6 +3,8 @@
 require_relative 'helpers/hook_detection'
 require_relative 'helpers/request_token'
 require_relative 'management'
+
+# Main sinatra class for Sinatra/Puma `Warden` service
 class App < Sinatra::Base
   helpers Sinatra::CustomLogger
   attr_accessor :params
