@@ -46,7 +46,10 @@ module ExecutionerHelper
         sleep 15
       else
         status_change = %w[NEW REOPENED ASSIGNED].include?(responce['status'])
-        @logger.info "Bugzilla responce for bug : bug #{action_data['bug_id']} status #{responce['status']}. Status will #{'NOT ' unless status_change}change"
+        log_entry = "Bugzilla responce for bug : bug #{action_data['bug_id']} " \
+                    "status #{responce['status']}. " \
+                    "Status will #{'NOT ' unless status_change}change"
+        @logger.info(log_entry)
         break status_change
       end
     end
