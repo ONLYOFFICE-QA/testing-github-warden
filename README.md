@@ -51,6 +51,19 @@ Examples for only comments:
 Until [#82](https://github.com/ONLYOFFICE-QA/testing-github-warden/issues/82)
 is resolved
 
+## Adding new repo to list of repos
+
+This process consists or three steps:
+
+1. Add repo to `config/allowed_branches.yml`. Example is PR like [that](https://github.com/ONLYOFFICE-QA/testing-github-warden/pull/564)
+2. Update backend service, what running on one of our servers.
+  Only server administrators can do that.
+3. On repository side - new WebHook registration is required.
+Go to `Settings` -> `Webhooks` -> `Add webhook` and  
+fill form like on screenshot below:
+
+![Webhook settings screenshot](https://github.com/ONLYOFFICE-QA/testing-github-warden/assets/154601125/2bde6cc2-ccc4-48d6-978a-f3fa2ac595fb "Webhook settings screenshot")
+
 ## Adding new event
 
 Config for new pattern: `config/warden_config.yml`
