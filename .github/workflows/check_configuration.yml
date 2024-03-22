@@ -11,4 +11,4 @@ jobs:
           ruby-version: ruby
       - name: Run the script that checks for duplicates
         run: |
-          ruby scripts/check_config_duplicates
+          ruby scripts/check_config_duplicates.rb
