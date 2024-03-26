@@ -15,6 +15,7 @@
 * Add config for AVS repos
 * Add support for `simplecov` test coverage reports
 * Add `dependabot` check for `GitHub Actions`
+* Add CI script that check that repo config do not have duplicates
 
 ### Changes
 
