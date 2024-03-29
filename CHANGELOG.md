@@ -41,6 +41,7 @@
 * Increase unit-test coverage
 * Split tests on `unit` and `integration`
 * Increase test coverage
+* Migrate to `sinatra-4`
 
 ### Fixes
 

@@ -6,6 +6,7 @@ gem 'redis', groups: %i[warden executioner]
 
 group :warden do
   gem 'puma' # web server
+  gem 'rackup'
   gem 'sinatra' # main web framework
   gem 'sinatra-contrib' # main web framework
 end
