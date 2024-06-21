@@ -17,6 +17,7 @@
 * Add `dependabot` check for `GitHub Actions`
 * Add CI script that check that repo config do not have duplicates
 * Add `VERSION` file with version info
+* Add new release flow to docs and rake task
 
 ### Changes
 
