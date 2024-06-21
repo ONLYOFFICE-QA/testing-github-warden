@@ -6,6 +6,7 @@ require 'json'
 require 'logger'
 require 'onlyoffice_bugzilla_helper'
 require_relative 'executioner/executioner_helper'
+require_relative '../../helpers/version_helper'
 
 # Class for execute closing bugs received from redis
 class Executioner
@@ -16,6 +17,7 @@ class Executioner
     @redis = Redis.new(path: 'tmp/redis/redis.sock')
     @bugzilla = OnlyofficeBugzillaHelper::BugzillaHelper.new
     @logger.info 'Executioner initialized'
+    @version = VersionHelper.load_version
   end
 
   # Perform diagnostic of Executioner
@@ -26,6 +28,7 @@ class Executioner
     all_services_ok = bugzilla_key_exist && working_redis
     @logger.info "bugzilla key exist: #{bugzilla_key_exist}"
     @logger.info "redis is working: #{working_redis}"
+    @logger.info "Version: #{@version}"
     raise('Diagnostic error! See logs') unless all_services_ok
 
     puts "████████████████████████████████

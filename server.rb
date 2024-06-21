@@ -2,17 +2,13 @@
 
 require_relative 'helpers/hook_detection'
 require_relative 'helpers/request_token'
+require_relative 'helpers/version_helper'
 require_relative 'management'
 
 # Main sinatra class for Sinatra/Puma `Warden` service
 class App < Sinatra::Base
   helpers Sinatra::CustomLogger
   attr_accessor :params
-
-  def initialize
-    @version = '0.1.3'
-    super
-  end
 
   before do
     body = request.body.read
@@ -25,6 +21,7 @@ class App < Sinatra::Base
     logger = Logger.new($stdout)
     logger.level = Logger::DEBUG if development?
     set :logger, logger
+    set :warden_version, VersionHelper.load_version
   end
 
   get '/' do
