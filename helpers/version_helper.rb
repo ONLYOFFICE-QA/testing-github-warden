@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Module for application versioning
 module VersionHelper
   # Load version from file
