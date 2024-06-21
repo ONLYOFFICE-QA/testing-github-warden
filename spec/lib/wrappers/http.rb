@@ -33,6 +33,7 @@ class Http
   end
 
   def generate_signature(params)
-    "sha1=#{OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), ENV.fetch('GITHUB_WARDEN_SECRET_TOKEN', ''), params.to_json)}"
+    token = ENV.fetch('GITHUB_WARDEN_SECRET_TOKEN', '')
+    "sha1=#{OpenSSL::HMAC.hexdigest(OpenSSL::Digest.new('sha1'), token, params.to_json)}"
   end
 end
