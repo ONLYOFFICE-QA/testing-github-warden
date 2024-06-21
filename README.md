@@ -121,3 +121,11 @@ if you using IDE with special environment space (like rubymine)
 
 For running test on debug, change `spec/data/static_data.rb:PORT` to `9292`,
 and add env variables to `spec/spec_helper.rb`
+
+## How to release new version (for maintainers)
+
+1. Update `VERSION` file
+2. Update `CHANGELOG.md` by adding version line after `master (unreleased)`
+3. Create PR with those changes and merge to `master`
+4. On `master` run `rake add_repo_tag`
+5. On `GitHub` create new release via web-browser and add info from `CHANGELOG.md`
