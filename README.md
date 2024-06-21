@@ -18,7 +18,7 @@ docker-compose up --build -d
 
 Don't forget to change important variables from docker_compose file:
 
-* `SECRET_TOKEN` - is a token from [webhook settings](https://developer.github.com/webhooks/securing/)
+* `GITHUB_WARDEN_SECRET_TOKEN` - is a token from [webhook settings](https://developer.github.com/webhooks/securing/)
 * `GITHUB_WARDEN_BUGZILLA_API_KEY` - is a key from [bugzilla](https://bugzilla.readthedocs.io/en/latest/integrating/auth-delegation.html)
 
 ## How it works
