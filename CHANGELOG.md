@@ -2,6 +2,8 @@
 
 ## master (unreleased)
 
+## 0.2.0 (2024-06-21)
+
 ### New Features
 
 * Add `markdownlint` checks to CI
