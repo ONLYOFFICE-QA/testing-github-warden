@@ -12,7 +12,7 @@ services:
       - redis
     restart: always
     environment:
-      - SECRET_TOKEN
+      - GITHUB_WARDEN_SECRET_TOKEN
 
   executioner:
     build:
@@ -26,7 +26,7 @@ services:
       - redis
     restart: always
     environment:
-      - BUGZILLA_API_KEY
+      - GITHUB_WARDEN_BUGZILLA_API_KEY
   redis:
     image: redis
     volumes:

@@ -1,5 +1,5 @@
 puma -C config/puma.rb
 
 DON'T FORGET to add environment variables for server and for tests.
-* BUGZILLA_API_KEY - token from bugzilla
-* SECRET_TOKEN - token from github
+* GITHUB_WARDEN_BUGZILLA_API_KEY - token from bugzilla
+* GITHUB_WARDEN_SECRET_TOKEN - token from github

@@ -83,8 +83,8 @@ class Executioner
   # Check if bugzilla key correctly exists
   # @return [Boolean] result of check
   def check_bugzilla_key?
-    return false unless ENV['BUGZILLA_API_KEY']
-    return false if ENV['BUGZILLA_API_KEY'].empty?
+    return false unless ENV['GITHUB_WARDEN_BUGZILLA_API_KEY']
+    return false if ENV['GITHUB_WARDEN_BUGZILLA_API_KEY'].empty?
 
     true
   end

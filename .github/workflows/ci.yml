@@ -4,8 +4,8 @@ jobs:
   ci:
     runs-on: ubuntu-latest
     env:
-      BUGZILLA_API_KEY: ${{ secrets.BUGZILLA_API_KEY }}
-      SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
+      GITHUB_WARDEN_BUGZILLA_API_KEY: ${{ secrets.BUGZILLA_API_KEY }}
+      GITHUB_WARDEN_SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
     steps:
       - uses: actions/checkout@v4
       - name: Set up Ruby 3.1

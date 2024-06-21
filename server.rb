@@ -28,7 +28,7 @@ class App < Sinatra::Base
   end
 
   get '/' do
-    @secret_token = !ENV['SECRET_TOKEN'].nil?
+    @secret_token = !ENV['GITHUB_WARDEN_SECRET_TOKEN'].nil?
     @commits_count = @redis.lrange('github_warden_action', 0, -1).size
     @redis_ping = @redis.ping == 'PONG'
     erb :index
@@ -50,7 +50,7 @@ class App < Sinatra::Base
   def verify_signature
     token = RequestToken.new(request)
     halt 500, { errors: ['No HTTP_X_HUB_SIGNATURE or HTTP_X_GITLAB_TOKEN'] }.to_json unless token.sender_type
-    halt 500, { errors: ['No SECRET_TOKEN'] }.to_json unless ENV['SECRET_TOKEN']
+    halt 500, { errors: ['No GITHUB_WARDEN_SECRET_TOKEN'] }.to_json unless ENV['GITHUB_WARDEN_SECRET_TOKEN']
     halt 500, { errors: ['Wrong signatures'] }.to_json unless signatures_are_correct(token)
   end
 

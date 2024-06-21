@@ -41,6 +41,7 @@
 * Increase unit-test coverage
 * Split tests on `unit` and `integration`
 * Increase test coverage
+* Rename configuration ENVs to have `GITHUB_WARDEN_` prefix
 
 ### Fixes
 
