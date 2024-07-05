@@ -28,8 +28,6 @@ jobs:
   hadolint:
     name: hadolint
     runs-on: ubuntu-latest
-    env:
-      HADOLINT_RECURSIVE: "true"
     steps:
       - uses: actions/checkout@v4
       - name: Run Hadolint
