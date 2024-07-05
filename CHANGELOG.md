@@ -2,6 +2,10 @@
 
 ## master (unreleased)
 
+### New Features
+
+* Add `hadolint` check in CI
+
 ## 0.2.0 (2024-06-21)
 
 ### New Features
