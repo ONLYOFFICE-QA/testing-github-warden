@@ -2,6 +2,14 @@
 
 ## master (unreleased)
 
+### New Features
+
+* Add `hadolint` check in CI.
+
+### Fixes
+
+* Fix several issues found by `hadolint` integration.
+
 ## 0.2.0 (2024-06-21)
 
 ### New Features
