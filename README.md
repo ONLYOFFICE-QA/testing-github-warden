@@ -4,16 +4,16 @@
 
 Change dockerfile: need to add `SECRET_TOKEN` and `BUGZILLA_API_KEY`
 
-Or from docker-compose
+Or from `docker compose`
 
 ```shell
-docker-compose up -d
+docker compose up -d
 ```
 
-There are easy way to update warden if you use docker-compose
+There are easy way to update warden if you use `docker compose`
 
 ```shell
-docker-compose up --build -d
+docker compose up --build -d
 ```
 
 Don't forget to change important variables from docker_compose file:
@@ -59,7 +59,7 @@ This process consists or three steps:
 2. Update backend service, what running on one of our servers.
   Only server administrators can do that.
 3. On repository side - new WebHook registration is required.
-Go to `Settings` -> `Webhooks` -> `Add webhook` and  
+Go to `Settings` -> `Webhooks` -> `Add webhook` and
 fill form like on screenshot below:
 
 ![Webhook settings screenshot](https://github.com/ONLYOFFICE-QA/testing-github-warden/assets/154601125/2bde6cc2-ccc4-48d6-978a-f3fa2ac595fb "Webhook settings screenshot")
@@ -107,7 +107,7 @@ repository_name_array must be array, branch_pattern must be regexp
 Run server and tests in same keys:
 
 ```bash
-SECRET_TOKEN='1234' BUGZILLA_API_KEY='<api key>' docker-compose up -d
+SECRET_TOKEN='1234' BUGZILLA_API_KEY='<api key>' docker compose up -d
 SECRET_TOKEN='1234' BUGZILLA_API_KEY='<api key>' bundle exec rspec spec/tests/
 ```
 

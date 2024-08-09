@@ -10,6 +10,10 @@
 
 * Fix several issues found by `hadolint` integration.
 
+### Changes
+
+* Replace all mentions of `docker-compose` to `docker compose`
+
 ## 0.2.0 (2024-06-21)
 
 ### New Features
