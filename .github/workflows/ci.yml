@@ -20,7 +20,7 @@ jobs:
         run: rubocop
       - name: run unit tests
         run: bundle exec rspec spec/unit --fail-fast
-      - name: Start services in docker-compose
-        run: docker-compose up -d
+      - name: Start services in docker compose
+        run: docker compose up -d
       - name: run integration tests
         run: bundle exec rspec spec/integration --fail-fast
