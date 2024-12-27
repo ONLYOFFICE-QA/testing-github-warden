@@ -5,6 +5,7 @@ source 'https://rubygems.org'
 ruby '>= 3.4.0'
 
 gem 'logger', '~> 1'
+gem 'ostruct', '~> 0'
 gem 'redis', groups: %i[warden executioner]
 
 group :warden do
