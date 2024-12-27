@@ -5,6 +5,7 @@
 ### New Features
 
 * Add `hadolint` check in CI.
+* Use `ruby-3.4` as application base
 
 ### Fixes
 

@@ -8,10 +8,10 @@ jobs:
       SECRET_TOKEN: ${{ secrets.SECRET_TOKEN }}
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Ruby 3.1
+      - name: Set up Ruby 3.4
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1
+          ruby-version: 3.4
       - name: Install bundler dependencies
         run: |
           gem install bundler
