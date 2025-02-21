@@ -1,4 +1,4 @@
-FROM ruby:3.4.1-alpine
+FROM ruby:3.4.2-alpine
 ENV RACK_ENV=production
 ENV SECRET_TOKEN=''
 ENV BUGZILLA_API_KEY=''
