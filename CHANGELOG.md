@@ -10,6 +10,7 @@
 ### Fixes
 
 * Fix several issues found by `hadolint` integration.
+* Run `rubocop` in CI through `bundle exec`
 
 ### Changes
 
