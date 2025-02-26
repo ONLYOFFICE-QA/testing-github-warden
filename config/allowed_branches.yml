@@ -2,7 +2,8 @@
   :repository_name_array: ['test']
   :branch_pattern: 'test_branch_first|test_branch_other'
 -
-  :repository_name_array: ['build_tools',
+  :repository_name_array: ['api.onlyoffice.com',
+                           'build_tools',
                            'core',
                            'core-ext',
                            'desktop-apps',
