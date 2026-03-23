@@ -9,6 +9,7 @@
                            'desktop-apps',
                            'desktop-apps-ext',
                            'desktop-sdk',
+                           'Docker-Documentserver',
                            'DocSpace',
                            'DocSpace-server',
                            'DocSpace-client',
