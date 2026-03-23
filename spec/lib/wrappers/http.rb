@@ -28,6 +28,7 @@ class Http
     end
     request.body = params.to_json if params
     responce = @http.request(request)
+    puts "DEBUG RESPONSE: #{responce.code} #{responce.body}"
     responce.body = JSON.parse(responce.body)
     responce
   end
