@@ -21,6 +21,9 @@ jobs:
       - name: run unit tests
         run: bundle exec rspec spec/unit --fail-fast
       - name: Start services in docker compose
-        run: docker compose up -d
+        run: |
+          mkdir -p tmp/redis
+          chmod 777 tmp/redis
+          docker compose up -d
       - name: run integration tests
         run: bundle exec rspec spec/integration --fail-fast
