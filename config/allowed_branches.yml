@@ -13,6 +13,7 @@
                            'DocSpace',
                            'DocSpace-server',
                            'DocSpace-client',
+                           'docspace-ui-kit-react',
                            'document-android-editors',
                            'document-server-integration',
                            'documents-android',
