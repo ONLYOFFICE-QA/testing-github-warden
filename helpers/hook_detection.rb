@@ -20,7 +20,9 @@ class HookDetection
         result[commit.id] << { commit_message: commit.message,
                                comment: create_full_comment(commit, @object.branch),
                                bug_id: commit.bug_id,
-                               action: current_pattern[:action] }
+                               action: current_pattern[:action],
+                               branch: @object.branch,
+                               branch_version: @object.branch_version }
       end
     end
     result

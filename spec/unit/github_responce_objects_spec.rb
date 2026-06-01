@@ -22,6 +22,47 @@ describe GithubResponceObjects do
     end
   end
 
+  describe 'branch_version' do
+    it 'returns default version for develop branch' do
+      expect(github_object.branch_version).to eq('99.99')
+    end
+
+    it 'extracts version from hotfix branch' do
+      commit = Fixtures.commit
+      commit['ref'] = 'refs/heads/hotfix/v9.4.1'
+      github_object = described_class.new(commit)
+      expect(github_object.branch_version).to eq('9.4.1')
+    end
+
+    it 'extracts version from release branch' do
+      commit = Fixtures.commit
+      commit['ref'] = 'refs/heads/release/v9.5.0'
+      github_object = described_class.new(commit)
+      expect(github_object.branch_version).to eq('9.5.0')
+    end
+
+    it 'extracts version without v prefix' do
+      commit = Fixtures.commit
+      commit['ref'] = 'refs/heads/hotfix/9.4.1'
+      github_object = described_class.new(commit)
+      expect(github_object.branch_version).to eq('9.4.1')
+    end
+
+    it 'returns default version for master branch' do
+      commit = Fixtures.commit
+      commit['ref'] = 'refs/heads/master'
+      github_object = described_class.new(commit)
+      expect(github_object.branch_version).to eq('99.99')
+    end
+
+    it 'returns default version when branch is nil' do
+      commit = Fixtures.commit
+      commit['ref'] = nil
+      github_object = described_class.new(commit)
+      expect(github_object.branch_version).to eq('99.99')
+    end
+  end
+
   describe 'commits' do
     it 'github_object.commits should be an array' do
       expect(github_object.commits).to be_a(Array)
