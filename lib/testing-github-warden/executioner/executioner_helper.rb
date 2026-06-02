@@ -6,12 +6,13 @@ module ExecutionerHelper
     @logger.info ">> Add RESOLVED/FIXED to bug #{action_data['bug_id']}"
     return unless change_status?(action_data)
 
+    update_params = { status: 'RESOLVED', resolution: 'FIXED' }
+    update_params[:target_milestone] = action_data['branch_version'] if action_data['branch_version']
+
     responce = {}
     5.times do |i|
       @logger.info ">> Add(#{i + 1}) RESOLVED/FIXED to bug #{action_data['bug_id']}"
-      responce = @bugzilla.update_bug(action_data['bug_id'],
-                                      status: 'RESOLVED',
-                                      resolution: 'FIXED')
+      responce = @bugzilla.update_bug(action_data['bug_id'], **update_params)
       @logger.info "Bugzilla responce #{responce.body}"
 
       break unless responce['error']
