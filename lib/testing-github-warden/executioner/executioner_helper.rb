@@ -7,7 +7,7 @@ module ExecutionerHelper
     return unless change_status?(action_data)
 
     update_params = { status: 'RESOLVED', resolution: 'FIXED' }
-    update_params[:target_milestone] = action_data['branch_version'] if action_data['branch_version']
+    update_params[:version] = action_data['branch_version'] if action_data['branch_version']
 
     responce = {}
     5.times do |i|
