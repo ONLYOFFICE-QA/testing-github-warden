@@ -34,11 +34,18 @@ describe GithubResponceObjects do
       expect(github_object.branch_version).to eq('9.4.1')
     end
 
-    it 'extracts version from release branch' do
+    it 'strips trailing .0 patch from version' do
       commit = Fixtures.commit
       commit['ref'] = 'refs/heads/release/v9.5.0'
       github_object = described_class.new(commit)
-      expect(github_object.branch_version).to eq('9.5.0')
+      expect(github_object.branch_version).to eq('9.5')
+    end
+
+    it 'strips trailing .0 patch for 10.0.0' do
+      commit = Fixtures.commit
+      commit['ref'] = 'refs/heads/hotfix/v10.0.0'
+      github_object = described_class.new(commit)
+      expect(github_object.branch_version).to eq('10.0')
     end
 
     it 'extracts version without v prefix' do
