@@ -23,13 +23,18 @@ class GithubResponceObjects
   end
 
   # Extract version from branch name
+  # Strips trailing .0 patch to match Bugzilla version format
+  # @example "refs/heads/hotfix/v9.4.0" => "9.4"
   # @example "refs/heads/hotfix/v9.4.1" => "9.4.1"
+  # @example "refs/heads/hotfix/v10.0.0" => "10.0"
   # @example "refs/heads/develop" => "99.99"
   # @return [String] version string or DEFAULT_VERSION if not found
   def branch_version
     return DEFAULT_VERSION unless @branch
 
     match = @branch.match(VERSION_REGEXP)
-    match ? match[1] : DEFAULT_VERSION
+    return DEFAULT_VERSION unless match
+
+    match[1].sub(/\.0$/, '')
   end
 end
