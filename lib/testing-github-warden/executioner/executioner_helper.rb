@@ -6,15 +6,30 @@ module ExecutionerHelper
     @logger.info ">> Add RESOLVED/FIXED to bug #{action_data['bug_id']}"
     return unless change_status?(action_data)
 
-    update_params = { status: 'RESOLVED', resolution: 'FIXED' }
-    update_params[:version] = action_data['branch_version'] if action_data['branch_version']
-
     responce = {}
     5.times do |i|
       @logger.info ">> Add(#{i + 1}) RESOLVED/FIXED to bug #{action_data['bug_id']}"
-      responce = @bugzilla.update_bug(action_data['bug_id'], **update_params)
+      responce = @bugzilla.update_bug(action_data['bug_id'],
+                                      status: 'RESOLVED',
+                                      resolution: 'FIXED')
       @logger.info "Bugzilla responce #{responce.body}"
 
+      break unless responce['error']
+
+      @logger.info "Error found #{responce['error']}. Retrying..."
+      sleep 15
+    end
+    update_version(action_data) if action_data['branch_version']
+    responce
+  end
+
+  def update_version(action_data)
+    responce = {}
+    5.times do |i|
+      @logger.info ">> Update(#{i + 1}) version to #{action_data['branch_version']} on bug #{action_data['bug_id']}"
+      responce = @bugzilla.update_bug(action_data['bug_id'],
+                                      version: action_data['branch_version'])
+      @logger.info "Bugzilla responce #{responce.body}"
       break unless responce['error']
 
       @logger.info "Error found #{responce['error']}. Retrying..."
