@@ -30,6 +30,7 @@
                            'sdkjs-pivot-tables',
                            'sdkjs-sheet-views',
                            'server',
+                           'server-admin-panel',
                            'web-apps',
                            'web-apps-mobile',
                            'web-apps-pro']
