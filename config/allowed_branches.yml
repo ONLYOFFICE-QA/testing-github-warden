@@ -25,6 +25,7 @@
                            'onlyoffice',
                            'projects-mobile',
                            'sdkjs',
+                           'sdkjs-crypto',
                            'sdkjs-forms',
                            'sdkjs-native',
                            'sdkjs-ooxml',
