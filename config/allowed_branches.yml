@@ -39,13 +39,13 @@
                            'web-apps-mobile',
                            'web-apps-pro']
 
-  :branch_pattern: 'develop|hotfix|release'
+  :branch_pattern: 'develop|hotfix/v\d+(\.\d+)+|release/v\d+(\.\d+)+'
 -
   :repository_name_array: ['ControlPanel',
                            'ControlPanel_Private',
                            'onlyoffice.github.io',
                            'portals']
-  :branch_pattern: 'master|hotfix|release'
+  :branch_pattern: 'master|hotfix/v\d+(\.\d+)+|release/v\d+(\.\d+)+'
 # For AVS projects
 -
   :repository_name_array: ['activex',
