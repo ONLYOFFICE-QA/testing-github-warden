@@ -10,12 +10,13 @@ class AllowedBranchesParser
   # Check if actions on this branch is allowed
   # If repository name is found in allowed_branches.yml, bug status will change
   # If repository is found in allowed_branches.yml, but branch name is not matched, bug status will not be change
+  # `branch_pattern` must match the whole branch name (without `refs/heads/`), not a substring of it
   # @param object [GithubResponceObjects] object with data for allowance
   # @return [Boolean]
   def allowed_branch?(object)
     @data.each do |patterns|
       next unless patterns[:repository_name_array].include?(object.repository.name)
-      next unless /#{patterns[:branch_pattern]}/.match?(object.branch)
+      next unless %r{\Arefs/heads/(?:#{patterns[:branch_pattern]})\z}.match?(object.branch)
 
       return true
     end

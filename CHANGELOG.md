@@ -9,6 +9,8 @@
 
 ### Fixes
 
+* Match `branch_pattern` against the whole branch name, so branches
+  like `feat/hotfix-10-0-1` are not treated as `hotfix`
 * Fix several issues found by `hadolint` integration.
 * Run `rubocop` in CI through `bundle exec`
 
